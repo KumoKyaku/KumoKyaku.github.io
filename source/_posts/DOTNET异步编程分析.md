@@ -12,6 +12,8 @@ description: #你对本页的描述 可以省略
   * 返回值为Task的方法同步完成，不会new Task,内部使用的单例的已完成的Task,不会有额外开销。
     internal static readonly Task<TResult> s_defaultResultTask = AsyncTaskCache.CreateCacheableTask<TResult>(default(TResult));
 
+<!-- more -->
+
 * 同一个方法中多个await 会被编译在同一个状态机中。
 * 每个await关键字只会触发一次GetAwaiter()方法。
 * 没有用到await 就不要用async关键字，真的会有性能损失。内部会构造状态机对象和多个辅助对象。请在项目中将警告CS1998视为错误。
