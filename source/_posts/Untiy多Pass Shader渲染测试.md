@@ -1,0 +1,29 @@
+---
+title: Untiy多Pass Shader渲染测试 #文章标题
+date: 2017/12/17 23:46:25
+updated: 2019/1/6 23:46:25
+categories: "图形学" #文章分类目录 可以省略
+tags: #文章标签 可以省略
+     - 渲染
+     - Unity
+     - 测试
+     - shader
+     - pass
+description: #你对本页的描述 可以省略
+---
+
+| 渲染关系             | 按照渲染流程取得正确的pass"LightMode"="ForwardBase"          |
+| -------------------- | :----------------------------------------------------------- |
+|                      | 相同LightMode   标签，按照从上到下依次渲染，每个pass渲染一次，按照      blend 进行混合 |
+|                      | 前向渲染 主要灯光使用"LightMode"="ForwardBase"               |
+|                      | 次要灯光使用"LightMode"="ForwardAdd"                         |
+|                      | 延迟渲染 使用 "LightMode"="Deferred"                         |
+|                      | 生成阴影 使用   "LightMode"="ShadowCaster"，必须有次通道，或者      fallback 的shader中含有此通道，不然无法产生阴影 |
+|                      | 接受阴影 还没搞清楚（应该和产生阴影类似）                    |
+|                      |                                                              |
+| 混合方式 One zero    | 显示为蓝色                                                   |
+| 混合方式 One One     | 显示为青色（cyan）                                           |
+| setpass calls        | 增加物体个数不会增加setpass calls；      每增加一个参与（正确的LightMode 标签）渲染的通道增加一个setpass   calls； |
+| batches （主要参数） | 每个物体每个参与（正确的LightMode   标签）渲染的pass产生一个batches；      2个物体，前向渲染两个通道 产生4个batches（没有动态批处理）            在测试中显示多pass显示不能动态批处理，而在其他资料中显示第一个pass可以动态批处理，此处存疑 |
+| drawcall             | 同上                                                         |
+| 渲染顺序             | 测试用例：方块123 各2通道，方块4使用其他shader单通道，渲染队列2000：共4个方块      结论：            3个方块总是先渲染第一个pass   ，在渲染后续pass（方块123，pass1，方块123pass2）      其他方块可以插入多个pass中间，不能插入同一个pass中间，同一个pass方块123近似视为一个物体（但是不能动态批处理）      （例如 方块123，pass1，方块4， 方块123pass2 ；      方块4，方块123，pass1，   方块123pass2；      方块123，pass1， 方块123pass2  ， 方块4；）      不准确，后续使用 几何着色器 测试发现 极少情况下 能插入同一个pass中间                  顺序按照 深度排序，但是方块123 中心深度 计算方式不明，有的时候Z轴距离要相差很远才能改变渲染顺序      测试表明，因深度改变渲染顺序存在触发边界，边界根据物理距离相机深度会发生变化，具体边界没有测出。 |
