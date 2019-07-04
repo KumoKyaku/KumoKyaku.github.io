@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>MMD2FBX分析 | 那咋爆裂啊</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="场景 mesh0             初音素材mesh0    初音素材mesh1        （不含有光源）                 原始大小（M）        8.43                0.8未处理FBX大小（M）        45.3                5.62顶点数（）            58441                11512">
+<meta name="keywords" content="3D模型,美术,资源,建模">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MMD2FBX分析">
+<meta property="og:url" content="https://kumokyaku.github.io/2016/02/04/MMD2FBX分析/index.html">
+<meta property="og:site_name" content="那咋爆裂啊">
+<meta property="og:description" content="场景 mesh0             初音素材mesh0    初音素材mesh1        （不含有光源）                 原始大小（M）        8.43                0.8未处理FBX大小（M）        45.3                5.62顶点数（）            58441                11512">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-01-15T15:46:55.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MMD2FBX分析">
+<meta name="twitter:description" content="场景 mesh0             初音素材mesh0    初音素材mesh1        （不含有光源）                 原始大小（M）        8.43                0.8未处理FBX大小（M）        45.3                5.62顶点数（）            58441                11512">
+  
+    <link rel="alternate" href="/atom.xml" title="那咋爆裂啊" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/plugin/bganimation/bg.css">
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+        <div class="widget-wrap mobile-header">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://avatars0.githubusercontent.com/u/15962980?s=400&amp;u=9f44d64956034405c51c0871949db00551133265&amp;v=4">
+    <h2 class="author">云却</h2>
+    <h3 class="description"></h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>23</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>13</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>40</strong><br>标签</div></a>
+    </div>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+        <section id="main"><article id="post-MMD2FBX分析" class="wow slideInRight article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/02/04/MMD2FBX分析/" class="article-date">
+  <time class="post-time" datetime="2016-02-04T15:46:55.000Z" itemprop="datePublished">
+    <span class="post-month">2月</span><br>
+    <span class="post-day">04</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      MMD2FBX分析
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/3D模型/">3D模型</a>
+  </div>
+
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <pre><code>场景 mesh0             初音素材mesh0    初音素材mesh1        （不含有光源）                
+</code></pre><p>原始大小（M）        8.43                0.8<br>未处理<br>FBX大小（M）        45.3                5.62<br>顶点数（）            58441                11512              5996<br>多边形（）            49432                16154              7200<br>Batches（+2）        27                    40                               （空场景含有2个dc）</p>
+<p>用3dmax打开重新保存一次不做任何处理<br>                                      （合计）<br>3dmax顶点            56746                14009<br>3dmax面数            49432                23356<br>FBX大小（M）        14.8                1.55<br>顶点数（）            58441                11512              5996<br>多边形（）            49432                16154              7200<br>Batches（+2）        27                    40</p>
+<p>结论：文件体积明显变小。原因可能是MMD4Mecanim生成的fbx含有多余信息。<br>FBX导出选项 几何体–保留边缘方向            对模型  无明显效果。</p>
+<p>移除骨骼        </p>
+<p>3dmax顶点            56746                14009<br>3dmax面数            49432                23356<br>FBX大小（M）        14.7                1.23<br>顶点数（）            58441                11508              6206<br>多边形（）            49432                16154              7200<br>Batches（+2）        27                    40</p>
+<p>结论：骨骼对大小和性能影响不大，对于场景文件也可以保留骨骼。</p>
+<p>重新分割UV<br>                                      （合计）<br>3dmax顶点            56746                14009<br>3dmax面数            49432                23356<br>FBX大小（M）        14.8                1.41<br>顶点数（）            58441                11512              5996<br>多边形（）            49432                16154              7200<br>Batches（+2）        27                    41</p>
+<p>结论：uv对模型大小和性能影响不大。<br>uv重叠会对烘焙贴图产生影响，对MMD模型UV重新分割是有必要的。<br>如果不使用AO贴图UV重分可以省略。<br>对于MMD shader有些无法在3Dmax里还原，因此没有办法重新制作贴图，所以无法重新分割UV。<br>（本人对于3dmax不是很了解，如果观点有误请指出）</p>
+<p><strong>重要<strong><em>**</em></strong></strong></p>
+<p>建议的顶点数场景顶点应该控制在10k-20K，（视角内，移动端需要更低）<br>人物顶点控制在500-10K</p>
+<p>真机测试：<br>红米note 模型 chan： 大小1.64m<br>顶点：9430 面数：13575  </p>
+<p>场景中：模型1，平行光1 帧数 40-45<br>场景中：模型2，平行光1 帧数 23-25<br>场景中：模型3，平行光1 帧数 15-19</p>
+<p>好消息是，动作和简单的物理使用不会掉帧。<br>视角内同时超过100K个顶点会直接卡死。（100K是个估算值值）<br>场景中的平行光会让顶点数增加5-10倍，原因不清楚（有了解的朋友希望告知）</p>
+<p>结论，对于模型应该准备不同的Mesh，使用LOD group进行优化。<br>PC端并不需要。</p>
+<p>MultiRes优化：（优化要在重新分割UV前进行）<br>步骤：将模型按照正反面和主次程度分成若干部分。<br>使用MultiRes修改器进行优化<br>参数：网格内部顶点合并阈值0.1（自行调整）勾选材质边界线保留基础顶点多顶点法线角度75<br>点击生成，（机器差可能会出现未响应，耐心等待）<br>调节顶点百分比（35%一下开始出现接缝缺面，要自行把握）<br>点击生成完成优化。</p>
+<p>逐一完成各个部分，重要部分轻度优化，内面和次要部分可以重点优化。</p>
+<p>特别注意圆面，使用优化修改器优化，有的时候会把圆心顶点优化掉。<br>通常不要把圆面和关联部分分开，扇形面会被优化成三角面产生缝隙。</p>
+<p>重新</p>
+<pre><code>（合计）
+</code></pre><p>3dmax顶点            56746                14009<br>3dmax面数            49432                23356<br>FBX大小（M）        14.8                1.41<br>顶点数（）            58441                11512              5996<br>多边形（）            49432                16154              7200<br>Batches（+2）        27                    41<br>结论：uv对模型大小和性能影响不大。<br>uv重叠会对烘焙贴图产生影响，对MMD模型UV重新分割是有必要的。<br>如果不使用AO贴图UV重分可以省略。<br>对于MMD shader有些无法在3Dmax里还原，因此没有办法重新制作贴图，所以无法重新分割UV。<br>（本人对于3dmax不是很了解，如果观点有误请指出）</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://kumokyaku.github.io/2016/02/04/MMD2FBX分析/" data-id="cjxom1pp20006tsvhp0rt8yl1" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/3D模型/">3D模型</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/建模/">建模</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/美术/">美术</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/资源/">资源</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/12/12/设计计划/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          设计计划
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/02/04/小说设定/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">小说设定</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <h1 class="blog-title">那咋爆裂啊</h1>
+    <h2 class="blog-subtitle"></h2>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://avatars0.githubusercontent.com/u/15962980?s=400&amp;u=9f44d64956034405c51c0871949db00551133265&amp;v=4">
+    <h2 class="author">云却</h2>
+    <h3 class="description"></h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>23</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>13</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>40</strong><br>标签</div></a>
+    </div>
+
+
+
+    <div class="social-link">
+      
+        <a class="hvr-bounce-in" href="https://github.com/KumoKyaku" target="_blank" title="Github">
+          Github
+        </a>
+      
+    </div>
+
+    <div class="friend-link">
+      <h2>友情链接</h2>
+      
+        <a class="hvr-bounce-in" href="http://dumoedss.cc/?p=211" target="_blank" title="萌就是正义">
+          萌就是正义
+        </a>
+      
+    </div>
+  </div>
+</div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy;2018 - 2019 云却<br>
+      由<a href="http://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
+      主题-<a href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a>
+      
+    </div>
+    
+  </div>
+</footer>
+    </div>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//apps.bdimg.com/libs/wow/0.1.6/wow.min.js"></script>
+<script>
+new WOW().init();
+</script>   
+
+
+  <link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
+  <script src="/plugin/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+  <link rel="stylesheet" href="/plugin/galmenu/GalMenu.css">
+  <script src="/plugin/galmenu/GalMenu.js"></script>
+  <div class="GalMenu GalDropDown">
+      <div class="circle" id="gal">
+        <div class="ring">
+          
+            <a href="/" title="" class="menuItem">首页</a>
+          
+            <a href="/tags" title="" class="menuItem">标签</a>
+          
+            <a href="/categories" title="" class="menuItem">分类</a>
+          
+            <a href="/archives" title="" class="menuItem">归档</a>
+          
+            <a href="/xxxxxxxxx" title="" class="menuItem">xxx</a>
+          
+            <a href="/xxxxxxx" title="" class="menuItem">xxxx</a>
+          
+        </div>
+        
+          <audio id="audio" src="#"></audio>
+        
+      </div> 
+</div>
+<div id="overlay" style="opacity: 1; cursor: pointer;"></div>
+  <script type="text/javascript">var items = document.querySelectorAll('.menuItem');
+    for (var i = 0,
+    l = items.length; i < l; i++) {
+      items[i].style.left = (50 - 35 * Math.cos( - 0.5 * Math.PI - 2 * (1 / l) * i * Math.PI)).toFixed(4) + "%";
+      items[i].style.top = (50 + 35 * Math.sin( - 0.5 * Math.PI - 2 * (1 / l) * i * Math.PI)).toFixed(4) + "%"
+    }</script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('body').GalMenu({
+      'menu': 'GalDropDown'
+    })
+  });
+</script>
+
+  <section class="hidden-xs"> 
+  <ul class="cb-slideshow"> 
+    <li><span>苟利</span></li> 
+    <li><span>国家</span></li> 
+    <li><span>生死以</span></li> 
+    <li><span>岂能</span></li> 
+    <li><span>祸福</span></li> 
+    <li><span>趋避之</span></li> 
+  </ul>
+</section>
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

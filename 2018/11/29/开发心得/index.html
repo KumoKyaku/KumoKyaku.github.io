@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>开发心得 | 那咋爆裂啊</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="开发心得这里的每一点心得都是遇到的坑…… 游戏设计别限制玩家要怎么玩 解决方案技术栈 美术资源管理svn/git-fls也可以建2个库，美术资源是Fork的库。这样。美术库只包含基本代码。代码库只包含基本允许场景。 其他资源管理使用git 文档使用  dokuwiki/ amwiki + git /Confluence或代替品 项目管理 （禅道/Redmine） + QQ邮箱 + webqq(调研">
+<meta name="keywords" content="心得,游戏">
+<meta property="og:type" content="article">
+<meta property="og:title" content="开发心得">
+<meta property="og:url" content="https://kumokyaku.github.io/2018/11/29/开发心得/index.html">
+<meta property="og:site_name" content="那咋爆裂啊">
+<meta property="og:description" content="开发心得这里的每一点心得都是遇到的坑…… 游戏设计别限制玩家要怎么玩 解决方案技术栈 美术资源管理svn/git-fls也可以建2个库，美术资源是Fork的库。这样。美术库只包含基本代码。代码库只包含基本允许场景。 其他资源管理使用git 文档使用  dokuwiki/ amwiki + git /Confluence或代替品 项目管理 （禅道/Redmine） + QQ邮箱 + webqq(调研">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-03-15T15:46:25.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="开发心得">
+<meta name="twitter:description" content="开发心得这里的每一点心得都是遇到的坑…… 游戏设计别限制玩家要怎么玩 解决方案技术栈 美术资源管理svn/git-fls也可以建2个库，美术资源是Fork的库。这样。美术库只包含基本代码。代码库只包含基本允许场景。 其他资源管理使用git 文档使用  dokuwiki/ amwiki + git /Confluence或代替品 项目管理 （禅道/Redmine） + QQ邮箱 + webqq(调研">
+  
+    <link rel="alternate" href="/atom.xml" title="那咋爆裂啊" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/plugin/bganimation/bg.css">
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+        <div class="widget-wrap mobile-header">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://avatars0.githubusercontent.com/u/15962980?s=400&amp;u=9f44d64956034405c51c0871949db00551133265&amp;v=4">
+    <h2 class="author">云却</h2>
+    <h3 class="description"></h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>23</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>13</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>40</strong><br>标签</div></a>
+    </div>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+        <section id="main"><article id="post-开发心得" class="wow slideInRight article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/29/开发心得/" class="article-date">
+  <time class="post-time" datetime="2018-11-29T15:46:25.000Z" itemprop="datePublished">
+    <span class="post-month">11月</span><br>
+    <span class="post-day">29</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      开发心得
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/游戏开发/">游戏开发</a>
+  </div>
+
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="开发心得"><a href="#开发心得" class="headerlink" title="开发心得"></a>开发心得</h1><p>这里的每一点心得都是遇到的坑……</p>
+<h2 id="游戏设计"><a href="#游戏设计" class="headerlink" title="游戏设计"></a>游戏设计</h2><pre><code>别限制玩家要怎么玩
+</code></pre><h2 id="解决方案技术栈"><a href="#解决方案技术栈" class="headerlink" title="解决方案技术栈"></a>解决方案技术栈</h2><ul>
+<li>美术资源管理svn/git-fls<br>也可以建2个库，美术资源是Fork的库。这样。美术库只包含基本代码。代码库只包含基本允许场景。</li>
+<li>其他资源管理使用git</li>
+<li>文档使用  dokuwiki/ amwiki + git /Confluence或代替品</li>
+<li>项目管理 （禅道/Redmine） + QQ邮箱 + webqq(调研中)</li>
+<li>服务器使用docker Kitematic<ul>
+<li>mysql mongodb</li>
+<li>Jenkins</li>
+</ul>
+</li>
+<li>使用.vsTemplate规范代码，创建VSIX</li>
+</ul>
+<a id="more"></a>
+<h2 id="版本控制"><a href="#版本控制" class="headerlink" title="版本控制"></a>版本控制</h2><p>代码中完成Version类，对应版本配置文件。配置文件必须是可以差分的。<br>配置文件3个为默认配置。重写配置，指定版本重写配置。后面的配置文件盖前面的。<br>设计之初，任何功能都要根据版本可配置开启和关闭。每个功能条目配置上下限两个版本。<br>例如一个功能按钮是否显示，是否禁用，以应对功能随版本开闭。  </p>
+<h2 id="配置表"><a href="#配置表" class="headerlink" title="配置表"></a>配置表</h2><ul>
+<li>ID、数字等不能有隐含信息，所有约束必须明文指出。<ul>
+<li>错误示例：41，42，十位代表一个类别，个位代表子类别。</li>
+</ul>
+</li>
+</ul>
+<h2 id="代码细节-架构相关"><a href="#代码细节-架构相关" class="headerlink" title="代码细节 架构相关"></a>代码细节 架构相关</h2><p><strong><code>宗旨：尽量多分库，dll不怕多</code></strong>  </p>
+<ul>
+<li><p><code>大约是编程心得和杂项</code><br>  基本4层：  </p>
+<ul>
+<li>4 软件层，程序入口。最开始向 2 注入IoC容器，或IoC配置。所有模块依赖的1中其他模块都需要延迟注入，避免循环引用问题。  </li>
+<li>3 所有模块接口实现，通过依赖2实现延迟注入。  </li>
+<li>2 Ioc容器接口，包含所有模块接口（如果使用反射可以省略4）  </li>
+<li>1 最底层模块接口  </li>
+<li><p>0 公共API接口，所有模块共用  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">  4  	---------------`软件层 IoC容器实现层`</span><br><span class="line"> /|\  </span><br><span class="line">3 | 3 	---------------`模块实现层`（这里可以分为多个子层）</span><br><span class="line">|\|/| </span><br><span class="line">| 2 |	---------------`IoC容器接口层`（这里可以分为多个子层）</span><br><span class="line">|/|\|</span><br><span class="line">1 | 1	---------------`模块接口层`</span><br><span class="line"> \|/</span><br><span class="line">  0 	---------------`通用接口层`</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p><code>代码</code></p>
+<ul>
+<li>不应该跨模块使用enum，除非enum声明在基础层。<ul>
+<li>定义枚举一定要考虑是否会扩展。枚举扩展非常麻烦。</li>
+<li>也要考虑是否有FlagAttribute。</li>
+</ul>
+</li>
+<li>当你负责的模块使用了基础层的枚举，请在enum源码处注明你当前的模块，不能在源码处注明的，在文档中注明。（防止枚举变化带来大量改动）</li>
+</ul>
+</li>
+<li><p>业务逻辑代码操作的MODEL，应该是接口或者虚类 </p>
+</li>
+</ul>
+<h2 id="类设计"><a href="#类设计" class="headerlink" title="类设计"></a>类设计</h2><ul>
+<li><p>普通类</p>
+<ul>
+<li>如果一个类只为另一个类服务，那么他们应该写在一起，或者声明为内部类。<ul>
+<li>例如：如果只有一个Book类，那么BookManager类则没有必要，应该写成Book的静态函数。</li>
+</ul>
+</li>
+<li>声明 和 new 对象之前想想它的生命周期。  </li>
+<li>动态的还是静态的</li>
+<li>是不是唯一的</li>
+<li>如果类的逻辑只使用到类的部分属性，那么应该可以考虑抽象出接口</li>
+</ul>
+<ul>
+<li><code>不要用dynamic做形参类型</code></li>
+</ul>
+</li>
+<li><p>通讯协议类<br>开发阶段协议都是用Json,通过string传递。减少迭代。对协议类接口化。<br>  发布阶段，将部分协议具体化，提高性能。</p>
+<ul>
+<li><p>通讯类命名<br>不建议在类名中加入前缀后缀，例如~reqest,~response，S2C~,C2S~,在实际使用中，类名会变得越来长，一个类也未必具有单一功能，S2C的类也可能S2S，失去前缀的意义反而带来歧义。</p>
+</li>
+<li><p>应答类  </p>
+<ul>
+<li><p>必须包含2个内容:  </p>
+<ul>
+<li><del>谁做了什么，即请求上下文；</del> Rpc机制解决了这个问题。</li>
+<li>导致了什么结果，连锁结果应该放在同一个包中，避免时序错误 类似Race Condition。</li>
+</ul>
+</li>
+<li><p>应答类中嵌套它对应的请求类是合理的。必须在 更小的包体 和 准确性 之间做出取舍。</p>
+</li>
+<li>如果特殊必要，不要使用增量的方式发送数据，每个消息包一定要独立完整。低频消息不在乎这点数据量。增量发送会导致接收端数据准确性问题。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><code>业务逻辑应不应该直接使用协议类型？</code></p>
+</li>
+</ul>
+<h2 id="代码规范"><a href="#代码规范" class="headerlink" title="代码规范"></a>代码规范</h2><ul>
+<li><p>方法宽度长度不应该大于一个屏幕</p>
+</li>
+<li><p>///依据：大写开头是安全的，小写开头意味着你可能绕过某些Get/Set逻辑<br>  Pascal 类 结构 属性 方法 (static readonly) const event<br>  camel  字段 参数 元组参数（本质为字段）</p>
+</li>
+<li><p>缩进 4空格</p>
+</li>
+<li>大括号换行</li>
+<li>= 后换行（代码过长时）</li>
+<li><p>=&gt;后换行（代码过长时）</p>
+</li>
+<li><p>不要使用#region，严重影响代码导航和滚动条。</p>
+</li>
+<li>团队协作时，如果不能统一格式。就<code>不允许</code>使用自动格式页面所有代码。这将导致代码无法追溯。</li>
+</ul>
+<h2 id="ID"><a href="#ID" class="headerlink" title="ID"></a>ID</h2><ul>
+<li>ID 类唯一</li>
+<li>UID 进程内唯一</li>
+<li>GUID 全局唯一</li>
+</ul>
+<ul>
+<li>对于玩家ID NPCID 怪物ID等实体，共用一个域使用long类型，向前兼容。<br>这里不能在乎int/long的性能损失。</li>
+</ul>
+<h2 id="UI设计"><a href="#UI设计" class="headerlink" title="UI设计"></a>UI设计</h2><ul>
+<li><p>UI大小（横屏）  </p>
+<ul>
+<li>画布大小 1280 <em> 720 （或者） 1334 </em> 750（iphone6尺寸）</li>
+<li>切图大小尽量8的倍数，至少4的倍数。</li>
+<li>对于移动端，一以红米Note4x 5.5英寸 1920*1080 像素为例：<ul>
+<li>大Button，键盘按键的[3-4]/2，6-7个为宜。</li>
+<li>小Button，键盘按键的宽度,7-9为宜。</li>
+<li>可选物品选单 水平排列半屏 4 个为宜，垂直排列 2.5-3.5 。</li>
+</ul>
+</li>
+</ul>
+<p>真实项目中可以把UI设计稿截个全屏图放入手机中感受一下。</p>
+</li>
+<li><p>UnityUI代码结构</p>
+<ul>
+<li><p>基于多层继承的代码结构。（设想）</p>
+<p>| 继承层级 | N+2                                                          | N+1                                                          | N                                   | N-1                    |               |<br>| ——– | ———————————————————— | ———————————————————— | ———————————– | ———————- | ————- |<br>|          | 预制体层                                                     | 嵌套层                                                       | 泛型层                              | 总基类                 |               |<br>|          | 实际挂在prefab上的脚本。                                     | 仅用于其他功能的嵌套引用。如果unity支持泛型序列化，那么这层完全可以取消 | 依赖于Model数据的逻辑（名字，堆叠） | 不依赖于实际数据的逻辑 |               |<br>| 例:      | ItemIconView1      第一版的物品图标脚本                      | (abstract)ItemTIconBase                                      | <code>ItemIcon&lt;T&gt;</code>                       | (abstract)ItemIconCore | Monobehaviour |<br>|          | ItemIconView2      第二版的物品图标脚本                      |                                                              |                                     |                        |               |<br>|          | ShopItemView1         +(abstractItemTIconBase      商店物品脚本，包含了一个普通物品的图标，当由于需求变化ItemIconView出现大幅度修改时，由于这里引用的父类所以无需改动。 |                                                              |                                     |                        |               |</p>
+</li>
+<li><p>基于接口的代码结构。</p>
+<p>做到你的所有逻辑写在不继承于MonoBehavior的类里即可。</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<hr>
+<h2 id="对于文字，图片等资源的ID表示法问题"><a href="#对于文字，图片等资源的ID表示法问题" class="headerlink" title="对于文字，图片等资源的ID表示法问题"></a><code>对于文字，图片等资源的ID表示法问题</code></h2><p>由于需要文字国际化，我们通常在逻辑中使用一个Key（int/string/enum）表示一句话。那么在内存中我们什么时候将Key转化为字符串Value：</p>
+<p>A. 在配置表加载完毕后，Model构建时将Key转化为Value。表现为Model中字段为Value(string)。</p>
+<p>B. 在逻辑层面保持Key,在显示到屏幕的最后一刻，也就是View层将Key转化为String。表现为Model中字段为NameKey(Key)。</p>
+<p>C. 在逻辑层面保持Key,在显示到屏幕的最后一刻，也就是View层将Key转化为图片等大型资源。表现为Model中字段为AssetKey(Key)。</p>
+<table>
+<thead>
+<tr>
+<th>各个方面优劣对比</th>
+<th>A:Name(string)</th>
+<th>B:NameKey(Key)</th>
+<th>C：AssetKey(Key)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>内存占用</td>
+<td>-</td>
+<td>-</td>
+<td>○</td>
+</tr>
+<tr>
+<td>Debug难易</td>
+<td>○</td>
+<td>×</td>
+<td>○</td>
+</tr>
+<tr>
+<td>参数传递</td>
+<td>-</td>
+<td>-</td>
+<td>○</td>
+</tr>
+<tr>
+<td>跨模块API设计</td>
+<td>○</td>
+<td>×</td>
+<td>×</td>
+</tr>
+</tbody>
+</table>
+<h2 id="结论：对于String使用A方式，对于图片，预制体等可延迟加载的大型资源，使用C方式。"><a href="#结论：对于String使用A方式，对于图片，预制体等可延迟加载的大型资源，使用C方式。" class="headerlink" title="结论：对于String使用A方式，对于图片，预制体等可延迟加载的大型资源，使用C方式。"></a>结论：对于String使用A方式，对于图片，预制体等可延迟加载的大型资源，使用C方式。</h2><hr>
+<h2 id="MVC"><a href="#MVC" class="headerlink" title="MVC"></a>MVC</h2><ul>
+<li>Q：游戏架构中MVC中M到底是什么？<ul>
+<li>A：网络远端传来的数据；配置表；数据库。<br>  游戏设计中，数据来源总是从这三者之一出发，最终表现在屏幕上。<pre><code>Input操作应该转化为指令，然后进入游戏逻辑，构成网络指令和操作指令的统一。
+</code></pre></li>
+<li>数据+逻辑应该做到可以脱离View运行。  </li>
+</ul>
+</li>
+</ul>
+<h2 id="M-V-VM"><a href="#M-V-VM" class="headerlink" title="M-V-VM"></a>M-V-VM</h2><h2 id="Q-为什么要有ViewModel"><a href="#Q-为什么要有ViewModel" class="headerlink" title="Q: 为什么要有ViewModel?"></a>Q: 为什么要有ViewModel?</h2><p>A: 比如有一组物品，有个是否是当前正在被选中的属性。如果这个属性放在Model上，那么关闭View，再打开View，这个物品仍然是被选中的。<br>所以是否被选中应该是ViewModel的一个属性。打开View时，根据Model初始化ViewModel。<br>所以对于View层，Model不可见，只关心ViewModel即可。ViewModel是Model加其他View需要的属性的组合。</p>
+<h2 id="开发流程"><a href="#开发流程" class="headerlink" title="开发流程"></a>开发流程</h2><p>IDEDA -&gt; 确定所属功能 -&gt; 拆分功能明确依赖 -&gt; 明确依赖上下游并标准化接口 -&gt; IDEA.</p>
+<h2 id="对象池"><a href="#对象池" class="headerlink" title="对象池"></a>对象池</h2><p>要有全局任务控制。<br>对于各个功能，使用的频率决定相关功能对象池的权重，以此决定对象池长期保持对象的数量。<br>把需要加载的东西加入任务队列。控制好内存和帧率的平衡。<br>良好的设计应该是游戏应该知道什么时间段是性能占用低的时间。<br>比如打开全屏UI，通常性能非常充足。这个时候全局如果认为内存可用。就会分帧实例化对象池的对象。</p>
+<h2 id="编程境界"><a href="#编程境界" class="headerlink" title="编程境界"></a><code>编程境界</code></h2><ol>
+<li>世间万物皆对象</li>
+<li>世间万物皆数据<br>解释：分得清什么是数据什么是逻辑，知道数据和逻辑可以互相转化，进而复用。<br>例子：各种配置表。</li>
+<li>标准化<br>解释：任何事物都需要不停的迭代发展。标准化是快速迭代的必要条件。  </li>
+<li>还没有悟出来……</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://kumokyaku.github.io/2018/11/29/开发心得/" data-id="cjxom1ps20041tsvhtl0ph7yl" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/心得/">心得</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/游戏/">游戏</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/11/29/虚拟形象/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          虚拟形象
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/09/26/日语笔记/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">日语笔记</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <h1 class="blog-title">那咋爆裂啊</h1>
+    <h2 class="blog-subtitle"></h2>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://avatars0.githubusercontent.com/u/15962980?s=400&amp;u=9f44d64956034405c51c0871949db00551133265&amp;v=4">
+    <h2 class="author">云却</h2>
+    <h3 class="description"></h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>23</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>13</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>40</strong><br>标签</div></a>
+    </div>
+
+
+
+    <div class="social-link">
+      
+        <a class="hvr-bounce-in" href="https://github.com/KumoKyaku" target="_blank" title="Github">
+          Github
+        </a>
+      
+    </div>
+
+    <div class="friend-link">
+      <h2>友情链接</h2>
+      
+        <a class="hvr-bounce-in" href="http://dumoedss.cc/?p=211" target="_blank" title="萌就是正义">
+          萌就是正义
+        </a>
+      
+    </div>
+  </div>
+</div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy;2018 - 2019 云却<br>
+      由<a href="http://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
+      主题-<a href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a>
+      
+    </div>
+    
+  </div>
+</footer>
+    </div>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//apps.bdimg.com/libs/wow/0.1.6/wow.min.js"></script>
+<script>
+new WOW().init();
+</script>   
+
+
+  <link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
+  <script src="/plugin/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+  <link rel="stylesheet" href="/plugin/galmenu/GalMenu.css">
+  <script src="/plugin/galmenu/GalMenu.js"></script>
+  <div class="GalMenu GalDropDown">
+      <div class="circle" id="gal">
+        <div class="ring">
+          
+            <a href="/" title="" class="menuItem">首页</a>
+          
+            <a href="/tags" title="" class="menuItem">标签</a>
+          
+            <a href="/categories" title="" class="menuItem">分类</a>
+          
+            <a href="/archives" title="" class="menuItem">归档</a>
+          
+            <a href="/xxxxxxxxx" title="" class="menuItem">xxx</a>
+          
+            <a href="/xxxxxxx" title="" class="menuItem">xxxx</a>
+          
+        </div>
+        
+          <audio id="audio" src="#"></audio>
+        
+      </div> 
+</div>
+<div id="overlay" style="opacity: 1; cursor: pointer;"></div>
+  <script type="text/javascript">var items = document.querySelectorAll('.menuItem');
+    for (var i = 0,
+    l = items.length; i < l; i++) {
+      items[i].style.left = (50 - 35 * Math.cos( - 0.5 * Math.PI - 2 * (1 / l) * i * Math.PI)).toFixed(4) + "%";
+      items[i].style.top = (50 + 35 * Math.sin( - 0.5 * Math.PI - 2 * (1 / l) * i * Math.PI)).toFixed(4) + "%"
+    }</script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('body').GalMenu({
+      'menu': 'GalDropDown'
+    })
+  });
+</script>
+
+  <section class="hidden-xs"> 
+  <ul class="cb-slideshow"> 
+    <li><span>苟利</span></li> 
+    <li><span>国家</span></li> 
+    <li><span>生死以</span></li> 
+    <li><span>岂能</span></li> 
+    <li><span>祸福</span></li> 
+    <li><span>趋避之</span></li> 
+  </ul>
+</section>
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
