@@ -38,9 +38,9 @@
     <h2 class="author">云却</h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>23</strong><br>文章</div></a>
-      <a href="/categories"><div><strong>13</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>40</strong><br>标签</div></a>
+      <a href="/archives"><div><strong>26</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>15</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>47</strong><br>标签</div></a>
     </div>
     <ul class="blog-link">
      
@@ -65,6 +65,234 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-UNITY生成LightmapUVs" class="wow slideInRight article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/07/14/UNITY生成LightmapUVs/" class="article-date">
+  <time class="post-time" datetime="2019-07-14T14:05:02.000Z" itemprop="datePublished">
+    <span class="post-month">7月</span><br>
+    <span class="post-day">14</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/14/UNITY生成LightmapUVs/">UNITY生成LightmapUVs</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Unity/">Unity</a>
+  </div>
+
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>模型通常含有8个UV。在不同的软件中叫法略有不同。  </p>
+<p>在unity中，分别叫[uv,uv2,uv3,……,uv7]。不存在uv1。<br>在Mesh API中，也已经废弃uv1属性。<br>在一些其他 API中，uv1属性 指的是第二通道的uv。 uv0属性指第一通道uv。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">UnityEngine.Rendering</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// Control which UV channels are affected by the Texture Animation Module</span></span><br><span class="line">    [<span class="meta">Flags</span>]</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">enum</span> UVChannelFlags</span><br><span class="line">    &#123;</span><br><span class="line">        UV0 = <span class="number">1</span>,</span><br><span class="line">        UV1 = <span class="number">2</span>,</span><br><span class="line">        UV2 = <span class="number">4</span>,</span><br><span class="line">        UV3 = <span class="number">8</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">UnityEditor</span></span><br><span class="line">&#123;</span><br><span class="line">    [<span class="meta">Flags</span>]</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">enum</span> VertexChannelCompressionFlags</span><br><span class="line">    &#123;</span><br><span class="line">        None        = <span class="number">0</span>,</span><br><span class="line">        Position    = <span class="number">1</span> &lt;&lt; <span class="number">0</span>,</span><br><span class="line">        Normal      = <span class="number">1</span> &lt;&lt; <span class="number">1</span>,</span><br><span class="line">        Tangent     = <span class="number">1</span> &lt;&lt; <span class="number">2</span>,</span><br><span class="line">        Color       = <span class="number">1</span> &lt;&lt; <span class="number">3</span>,</span><br><span class="line">        TexCoord0   = <span class="number">1</span> &lt;&lt; <span class="number">4</span>,</span><br><span class="line">        TexCoord1   = <span class="number">1</span> &lt;&lt; <span class="number">5</span>,</span><br><span class="line">        TexCoord2   = <span class="number">1</span> &lt;&lt; <span class="number">6</span>,</span><br><span class="line">        TexCoord3   = <span class="number">1</span> &lt;&lt; <span class="number">7</span>,</span><br><span class="line"></span><br><span class="line">        [<span class="meta">System.Obsolete(<span class="meta-string">"Use Position instead (UnityUpgradable) -&gt; Position"</span>, false)</span>]</span><br><span class="line">        kPosition   = <span class="number">1</span> &lt;&lt; <span class="number">0</span>,</span><br><span class="line">        [<span class="meta">System.Obsolete(<span class="meta-string">"Use Normal instead (UnityUpgradable) -&gt; Normal"</span>, false)</span>]</span><br><span class="line">        kNormal     = <span class="number">1</span> &lt;&lt; <span class="number">1</span>,</span><br><span class="line">        [<span class="meta">System.Obsolete(<span class="meta-string">"Use Color instead (UnityUpgradable) -&gt; Color"</span>, false)</span>]</span><br><span class="line">        kColor      = <span class="number">1</span> &lt;&lt; <span class="number">2</span>,</span><br><span class="line">        [<span class="meta">System.Obsolete(<span class="meta-string">"Use TexCoord0 instead (UnityUpgradable) -&gt; TexCoord0"</span>, false)</span>]</span><br><span class="line">        kUV0        = <span class="number">1</span> &lt;&lt; <span class="number">3</span>,</span><br><span class="line">        [<span class="meta">System.Obsolete(<span class="meta-string">"Use TexCoord1 instead (UnityUpgradable) -&gt; TexCoord1"</span>, false)</span>]</span><br><span class="line">        kUV1        = <span class="number">1</span> &lt;&lt; <span class="number">4</span>,</span><br><span class="line">        [<span class="meta">System.Obsolete(<span class="meta-string">"Use TexCoord2 instead (UnityUpgradable) -&gt; TexCoord2"</span>, false)</span>]</span><br><span class="line">        kUV2        = <span class="number">1</span> &lt;&lt; <span class="number">5</span>,</span><br><span class="line">        [<span class="meta">System.Obsolete(<span class="meta-string">"Use TexCoord3 instead (UnityUpgradable) -&gt; TexCoord3"</span>, false)</span>]</span><br><span class="line">        kUV3        = <span class="number">1</span> &lt;&lt; <span class="number">6</span>,</span><br><span class="line">        [<span class="meta">System.Obsolete(<span class="meta-string">"Use Tangent instead (UnityUpgradable) -&gt; Tangent"</span>, false)</span>]</span><br><span class="line">        kTangent    = <span class="number">1</span> &lt;&lt; <span class="number">7</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>MeshAPI中SetUV channel 参数为0-7。</strong></p>
+<p>在blender中，通常默认名字为[UVMap，UVMap.001,UVMap.002,……,UVMap.007]。</p>
+<h1 id="测试uv2"><a href="#测试uv2" class="headerlink" title="测试uv2"></a>测试uv2</h1><h2 id="1-将一个含有3个UV的模型导入unity，原样导出后uv如图。"><a href="#1-将一个含有3个UV的模型导入unity，原样导出后uv如图。" class="headerlink" title="1. 将一个含有3个UV的模型导入unity，原样导出后uv如图。"></a>1. 将一个含有3个UV的模型导入unity，原样导出后uv如图。</h2><p>三个通道uv位置不同。<br><img src="/2019/07/14/UNITY生成LightmapUVs/testuv.jpg" alt="img"></p>
+<h2 id="2-在unity中勾选Generate-Lightmap-UVs-导出模型。"><a href="#2-在unity中勾选Generate-Lightmap-UVs-导出模型。" class="headerlink" title="2. 在unity中勾选Generate Lightmap UVs,导出模型。"></a>2. 在unity中勾选Generate Lightmap UVs,导出模型。</h2><p><img src="/2019/07/14/UNITY生成LightmapUVs/testuv2.jpg" alt="img"></p>
+<p><code>发现引擎将模型的第二通道UV进行了覆盖，其他通道UV保持不变。</code><br><strong><code>结论：使用多UV实现特殊功能时，尽量将第二通道UV预留。使用第三第四通道UV。</code></strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://kumokyaku.github.io/2019/07/14/UNITY生成LightmapUVs/" data-id="cjy334ce3000bcwvhq512o7og" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/UV/">UV</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/技术/">技术</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/模型/">模型</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/渲染/">渲染</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-如何进行人物设计" class="wow slideInRight article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/07/14/如何进行人物设计/" class="article-date">
+  <time class="post-time" datetime="2019-07-14T04:55:17.000Z" itemprop="datePublished">
+    <span class="post-month">7月</span><br>
+    <span class="post-day">14</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/14/如何进行人物设计/">如何进行人物设计</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/设计/">设计</a>
+  </div>
+
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-基本参数"><a href="#1-基本参数" class="headerlink" title="1. 基本参数"></a>1. 基本参数</h1><table>
+<thead>
+<tr>
+<th>基本参数</th>
+<th>萌妹魔法师</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>名字/绰号</td>
+<td>云却子</td>
+</tr>
+<tr>
+<td>类型（幻想/科幻/末日/恐怖/西方/朋克）</td>
+<td>幻想</td>
+</tr>
+<tr>
+<td>原型/角色（主角/伙伴/导师/敌人/Boss/英雄）</td>
+<td>主角</td>
+</tr>
+<tr>
+<td>种族性别（人类/精灵/超人/兽人）</td>
+<td>人类女性</td>
+</tr>
+<tr>
+<td>年龄</td>
+<td>17</td>
+</tr>
+<tr>
+<td>个性（温和/保守/自信/鲁莽/傲慢/开朗/冷漠）</td>
+<td>开朗，固执</td>
+</tr>
+<tr>
+<td>职业</td>
+<td>魔法师</td>
+</tr>
+<tr>
+<td>经历/背景故事</td>
+<td>幼年时被魔法剑选中的人/流浪者</td>
+</tr>
+<tr>
+<td>细节</td>
+<td>拥有两个魔法剑，没有法杖。其中一柄剑从来没有出鞘，背在背上。</td>
+</tr>
+<tr>
+<td>参考图</td>
+<td></td>
+</tr>
+<tr>
+<td>简介描述：</td>
+<td>中二固执的平板魔法师，却有一颗近战的心，经常被误认为是剑士，出乎意料的用魔法把敌人打败，并乐此不疲。</td>
+</tr>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h1 id="2-寻找资料"><a href="#2-寻找资料" class="headerlink" title="2. 寻找资料"></a>2. 寻找资料</h1><h1 id="3-轮廓剪影"><a href="#3-轮廓剪影" class="headerlink" title="3. 轮廓剪影"></a>3. 轮廓剪影</h1><h1 id="4-内部分块"><a href="#4-内部分块" class="headerlink" title="4. 内部分块"></a>4. 内部分块</h1><h1 id="5-画轮廓线"><a href="#5-画轮廓线" class="headerlink" title="5. 画轮廓线"></a>5. 画轮廓线</h1><h1 id="6-细化上色"><a href="#6-细化上色" class="headerlink" title="6. 细化上色"></a>6. 细化上色</h1>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://kumokyaku.github.io/2019/07/14/如何进行人物设计/" data-id="cjy334cee000mcwvhnt6wyxpl" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/人物/">人物</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/小说/">小说</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/模型/">模型</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/游戏/">游戏</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/美术/">美术</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-一些思考" class="wow slideInRight article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/07/04/一些思考/" class="article-date">
+  <time class="post-time" datetime="2019-07-04T15:46:55.000Z" itemprop="datePublished">
+    <span class="post-month">7月</span><br>
+    <span class="post-day">04</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/04/一些思考/">一些思考</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/哲学/">哲学</a>
+  </div>
+
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="智慧生命的终极目标"><a href="#智慧生命的终极目标" class="headerlink" title="智慧生命的终极目标"></a>智慧生命的终极目标</h1><p>错误的方向不能称之为进化。这就涉及到进化的终极目标。我认为进化的终极目标是 永恒。小一些的终极目标是逃过热寂。<br>智慧生命的本能是进化，进化的反面是智慧生命的原罪。  </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://kumokyaku.github.io/2019/07/04/一些思考/" data-id="cjy334ceb000hcwvh8h1347uo" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/人生/">人生</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/哲学/">哲学</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/小说/">小说</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/思考/">思考</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/设定/">设定</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
   
     <article id="post-彩虹色与各向异性" class="wow slideInRight article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
@@ -114,7 +342,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://kumokyaku.github.io/2019/07/04/彩虹色与各向异性/" data-id="cjxom1ps80044tsvhrz8xgy84" class="article-share-link">分享</a>
+      <a data-url="https://kumokyaku.github.io/2019/07/04/彩虹色与各向异性/" data-id="cjy334ch5005ecwvh4ejkq329" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/图形学/">图形学</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/渲染/">渲染</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/软件开发/">软件开发</a></li></ul>
@@ -195,7 +423,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://kumokyaku.github.io/2019/05/26/ACGN推荐/" data-id="cjxom1poh0000tsvhdsk0z4mu" class="article-share-link">分享</a>
+      <a data-url="https://kumokyaku.github.io/2019/05/26/ACGN推荐/" data-id="cjy334cde0000cwvhfjxduqip" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/动漫/">动漫</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/小说/">小说</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/推荐/">推荐</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/番剧/">番剧</a></li></ul>
@@ -261,7 +489,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://kumokyaku.github.io/2019/02/06/ECS笔记/" data-id="cjxom1poz0005tsvh0d87wxyq" class="article-share-link">分享</a>
+      <a data-url="https://kumokyaku.github.io/2019/02/06/ECS笔记/" data-id="cjy334cdu0006cwvhlc6nu8pz" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ECS/">ECS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Unity/">Unity</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/游戏设计/">游戏设计</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/程序/">程序</a></li></ul>
@@ -422,7 +650,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://kumokyaku.github.io/2019/01/24/游戏行业发展/" data-id="cjxom1ppw000ztsvhw36ly0bw" class="article-share-link">分享</a>
+      <a data-url="https://kumokyaku.github.io/2019/01/24/游戏行业发展/" data-id="cjy334cew001dcwvhxknnhstj" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/总结/">总结</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/游戏/">游戏</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
@@ -485,7 +713,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://kumokyaku.github.io/2019/01/18/程序调试/" data-id="cjxom1pq10015tsvhfjv029m4" class="article-share-link">分享</a>
+      <a data-url="https://kumokyaku.github.io/2019/01/18/程序调试/" data-id="cjy334cf3001ncwvhfgizf7oj" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Debug/">Debug</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/心得/">心得</a></li></ul>
@@ -550,7 +778,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://kumokyaku.github.io/2019/01/15/常用软件/" data-id="cjxom1ppk000ltsvhwodolwob" class="article-share-link">分享</a>
+      <a data-url="https://kumokyaku.github.io/2019/01/15/常用软件/" data-id="cjy334ceg000qcwvhvrfoj0x3" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/资源/">资源</a></li></ul>
@@ -620,192 +848,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://kumokyaku.github.io/2018/12/28/游戏设计/" data-id="cjxom1ppy0011tsvhrl8w0f0m" class="article-share-link">分享</a>
+      <a data-url="https://kumokyaku.github.io/2018/12/28/游戏设计/" data-id="cjy334ces0016cwvhk4fwkzfl" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/游戏设计/">游戏设计</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/软件开发/">软件开发</a></li></ul>
 
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-  
-    <article id="post-渲染原理" class="wow slideInRight article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/12/20/渲染原理/" class="article-date">
-  <time class="post-time" datetime="2018-12-20T15:46:25.000Z" itemprop="datePublished">
-    <span class="post-month">12月</span><br>
-    <span class="post-day">20</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/12/20/渲染原理/">渲染原理</a>
-    </h1>
-  
-
-        <div>
-          
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/图形学/">图形学</a>
-  </div>
-
-          
-              
-
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="渲染是什么？"><a href="#渲染是什么？" class="headerlink" title="渲染是什么？"></a>渲染是什么？</h1><p>渲染是CPU将数据交给GPU计算的过程。</p>
-<h2 id="数据有哪些？"><a href="#数据有哪些？" class="headerlink" title="数据有哪些？"></a><code>数据有哪些？</code></h2><ul>
-<li>模型参数：顶点，三角面，法线，切线，变换矩阵，UV，顶点色</li>
-<li>材质参数：（颜色，纹理，金属的，粗糙度等）参数是动态的，可以是无限的。</li>
-</ul>
-<ul>
-<li>引擎内置参数：框架底层为每个shader声明的参数，框架底层为参数赋值（例如，深度缓冲，阴影缓冲）[通过变体等多种方式，可以理解为<code>固定参数</code>]</li>
-<li>全局参数：[<code>固定参数</code>]</li>
-</ul>
-<ul>
-<li>shader: 计算公式。  </li>
-</ul>
-<p>我们可以这样理解: GPU 通过 <code>shader</code> 计算公式，带入参数（<code>模型参数</code> =&gt; <code>固定参数，上文列出，无论shader是否使用，都会传送到GPU</code> ，<code>材质参数</code> =&gt; <code>动态参数，任意个数和类型</code>），计算得出一张图片，这张图片就是渲染缓冲区（RenderTarget）。</p>
-<p><strong>所以，只要shader和参数匹配，理论上我们可以通过添加无限的材质参数，来实现任意效果。</strong></p>
-        
-          <p class="article-more-link">
-            <a href="/2018/12/20/渲染原理/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://kumokyaku.github.io/2018/12/20/渲染原理/" data-id="cjxom1ppt000vtsvhoq17axjt" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/图形学/">图形学</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/渲染原理/">渲染原理</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-  
-    <article id="post-词语对照" class="wow slideInRight article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/12/07/词语对照/" class="article-date">
-  <time class="post-time" datetime="2018-12-07T15:46:25.000Z" itemprop="datePublished">
-    <span class="post-month">12月</span><br>
-    <span class="post-day">07</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/12/07/词语对照/">词语对照</a>
-    </h1>
-  
-
-        <div>
-          
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/日语/">日语</a>
-  </div>
-
-          
-              
-
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>仮の実装          Kari no jissō         临时实现<br>仕様　　　　        Shiyō　　　　　　　　        规范<br>ダンジョン　　        Danjon　　　　　　　        地下城<br>ロール             Rōru                  角色            role<br>ささやき            Sasayaki            耳语 密语<br>パーティ                                小队            party<br>ギルド            Girudo                公会            guild<br>フレンド            Furendo                好友            friend<br>エクストラ            Ekusutora            额外            extra<br>プレゼント            Purezento            介绍            present</p>
-<p>対処済み</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://kumokyaku.github.io/2018/12/07/词语对照/" data-id="cjxom1psa0047tsvht7vpgvgv" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/日语/">日语</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-  
-    <article id="post-如何习惯在别人的基础上开始" class="wow slideInRight article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/11/29/如何习惯在别人的基础上开始/" class="article-date">
-  <time class="post-time" datetime="2018-11-29T15:46:25.000Z" itemprop="datePublished">
-    <span class="post-month">11月</span><br>
-    <span class="post-day">29</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/29/如何习惯在别人的基础上开始/">如何习惯在别人的基础上开始</a>
-    </h1>
-  
-
-        <div>
-          
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/DOTNET/">DOTNET</a>
-  </div>
-
-          
-              
-
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>写一个功能，别人的实现不好，或者不合适，然后想着自己重写一套。但我们不能总是从头开始，</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://kumokyaku.github.io/2018/11/29/如何习惯在别人的基础上开始/" data-id="cjxom1ppc000ftsvh42y83j7e" class="article-share-link">分享</a>
-      
-      
     </footer>
   </div>
   
@@ -859,9 +906,9 @@
     <h2 class="author">云却</h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>23</strong><br>文章</div></a>
-      <a href="/categories"><div><strong>13</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>40</strong><br>标签</div></a>
+      <a href="/archives"><div><strong>26</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>15</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>47</strong><br>标签</div></a>
     </div>
 
 
