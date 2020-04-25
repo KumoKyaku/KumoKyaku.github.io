@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="那咋爆裂啊">
 <meta property="og:description" content="开发心得这里的每一点心得都是遇到的坑…… 游戏设计别限制玩家要怎么玩 解决方案技术栈 美术资源管理svn/git-fls也可以建2个库，美术资源是Fork的库。这样。美术库只包含基本代码。代码库只包含基本允许场景。 其他资源管理使用git 文档使用  dokuwiki/ amwiki + git /Confluence或代替品 项目管理 （禅道/Redmine） + QQ邮箱 + webqq(调研">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-15T15:46:25.000Z">
+<meta property="og:updated_time" content="2020-04-25T15:46:25.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="开发心得">
 <meta name="twitter:description" content="开发心得这里的每一点心得都是遇到的坑…… 游戏设计别限制玩家要怎么玩 解决方案技术栈 美术资源管理svn/git-fls也可以建2个库，美术资源是Fork的库。这样。美术库只包含基本代码。代码库只包含基本允许场景。 其他资源管理使用git 文档使用  dokuwiki/ amwiki + git /Confluence或代替品 项目管理 （禅道/Redmine） + QQ邮箱 + webqq(调研">
@@ -126,6 +126,11 @@
 <li>错误示例：41，42，十位代表一个类别，个位代表子类别。</li>
 </ul>
 </li>
+<li>元编程，为配置表每个字段生成一个接口，表结构类型是接口的组合、</li>
+<li>配置表支持的类型应该为proto3的类型，兼容性更好</li>
+</ul>
+<h2 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h2><ul>
+<li>使用byte代替bool<br>少用bool 表示一个属性，尽量用byte。比如一个单位的一个属性时可不可见。由可见不可见改为可见级别。bool改为byte。这样可以设置不同级别的战争迷雾。<br>都是一个字节，开销差不多，判断用是否大于0。</li>
 </ul>
 <h2 id="代码细节-架构相关"><a href="#代码细节-架构相关" class="headerlink" title="代码细节 架构相关"></a>代码细节 架构相关</h2><p><strong><code>宗旨：尽量多分库，dll不怕多</code></strong>  </p>
 <ul>
@@ -152,6 +157,9 @@
 </li>
 <li><p>业务逻辑代码操作的MODEL，应该是接口或者虚类 </p>
 </li>
+</ul>
+<h2 id="接口设计"><a href="#接口设计" class="headerlink" title="接口设计"></a>接口设计</h2><ul>
+<li>为了兼容AOT，接口定义的方法最好不要带泛型，可以改为泛型接口。IL2CPP或者其他静态生成器生成代码时，无法分析<code>接口中泛型方法</code>的<code>实现类的泛型方法</code>的<code>实际调用填充类型</code>。</li>
 </ul>
 <h2 id="类设计"><a href="#类设计" class="headerlink" title="类设计"></a>类设计</h2><ul>
 <li><p>普通类</p>
@@ -292,7 +300,16 @@
 </li>
 </ul>
 <h2 id="M-V-VM"><a href="#M-V-VM" class="headerlink" title="M-V-VM"></a>M-V-VM</h2><h2 id="Q-为什么要有ViewModel"><a href="#Q-为什么要有ViewModel" class="headerlink" title="Q: 为什么要有ViewModel?"></a>Q: 为什么要有ViewModel?</h2><p>A: 比如有一组物品，有个是否是当前正在被选中的属性。如果这个属性放在Model上，那么关闭View，再打开View，这个物品仍然是被选中的。<br>所以是否被选中应该是ViewModel的一个属性。打开View时，根据Model初始化ViewModel。<br>所以对于View层，Model不可见，只关心ViewModel即可。ViewModel是Model加其他View需要的属性的组合。</p>
+<h2 id="Q：一个model可以对应多个ViewModel么？比如用于3D空间和用于UI？"><a href="#Q：一个model可以对应多个ViewModel么？比如用于3D空间和用于UI？" class="headerlink" title="Q：一个model可以对应多个ViewModel么？比如用于3D空间和用于UI？"></a>Q：一个model可以对应多个ViewModel么？比如用于3D空间和用于UI？</h2><h2 id="Q：ViewModel可以Clone-Fork么"><a href="#Q：ViewModel可以Clone-Fork么" class="headerlink" title="Q：ViewModel可以Clone/Fork么?"></a>Q：ViewModel可以Clone/Fork么?</h2><h2 id="Q-当model数据发生改变使用dirty轮询机制还是事件机制？"><a href="#Q-当model数据发生改变使用dirty轮询机制还是事件机制？" class="headerlink" title="Q: 当model数据发生改变使用dirty轮询机制还是事件机制？"></a>Q: 当model数据发生改变使用dirty轮询机制还是事件机制？</h2><ul>
+<li>dirty机制<ul>
+<li>只需要在ui界面需要刷新的去看看是否有脏标志  有脏标志就刷新下界面  </li>
+<li>可能改变多次，但是只需要最新的</li>
+<li>轮询可以控制频率和间隔，事件如果短时间巨量变动可能导致大量运算</li>
+</ul>
+</li>
+</ul>
 <h2 id="开发流程"><a href="#开发流程" class="headerlink" title="开发流程"></a>开发流程</h2><p>IDEDA -&gt; 确定所属功能 -&gt; 拆分功能明确依赖 -&gt; 明确依赖上下游并标准化接口 -&gt; IDEA.</p>
+<h2 id="事务句柄-事务锁-ET6-0协程锁"><a href="#事务句柄-事务锁-ET6-0协程锁" class="headerlink" title="事务句柄/事务锁/ET6.0协程锁"></a>事务句柄/事务锁/ET6.0协程锁</h2><p>对于任何需要<code>异步执行/分段/防重入/互斥</code>的事务,应该采用先获取句柄在执行的设计，句柄在（多段）执行过程中传递，在执行结束后复位。句柄可以设计成泛型的，保存事务中间信息，尽量每次使用新句柄，而不是复用句柄，防止脏数据。</p>
 <h2 id="对象池"><a href="#对象池" class="headerlink" title="对象池"></a>对象池</h2><p>要有全局任务控制。<br>对于各个功能，使用的频率决定相关功能对象池的权重，以此决定对象池长期保持对象的数量。<br>把需要加载的东西加入任务队列。控制好内存和帧率的平衡。<br>良好的设计应该是游戏应该知道什么时间段是性能占用低的时间。<br>比如打开全屏UI，通常性能非常充足。这个时候全局如果认为内存可用。就会分帧实例化对象池的对象。</p>
 <h2 id="编程境界"><a href="#编程境界" class="headerlink" title="编程境界"></a><code>编程境界</code></h2><ol>
 <li>世间万物皆对象</li>
@@ -300,11 +317,12 @@
 <li>标准化<br>解释：任何事物都需要不停的迭代发展。标准化是快速迭代的必要条件。  </li>
 <li>还没有悟出来……</li>
 </ol>
+<h1 id="工具链"><a href="#工具链" class="headerlink" title="工具链"></a>工具链</h1><p>经验法则： 美术素材只能用工具生成中间素材，不能生成最终素材，因为对于最终素材90%的情况需要手动调整，挂载脚本。一旦由工具重新生成，手动调整部分会丢失，如果工具要保留手动调整部分，要做大量工作。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://kumokyaku.github.io/2018/11/29/开发心得/" data-id="ck4kkp89u001r4sl5w6h17197" class="article-share-link">分享</a>
+      <a data-url="https://kumokyaku.github.io/2018/11/29/开发心得/" data-id="ck9fcxkgo00337cl5ibjh7r2b" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/心得/">心得</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/游戏/">游戏</a></li></ul>
@@ -315,19 +333,19 @@
     
 <nav id="article-nav">
   
-    <a href="/2018/11/29/搞笑昵称/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/11/29/如何习惯在别人的基础上开始/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">
         
-          搞笑昵称
+          如何习惯在别人的基础上开始
         
       </div>
     </a>
   
   
-    <a href="/2018/11/29/虚拟形象/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2018/11/29/搞笑昵称/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title">虚拟形象</div>
+      <div class="article-nav-title">搞笑昵称</div>
     </a>
   
 </nav>
@@ -410,7 +428,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy;2018 - 2019 云却<br>
+      &copy;2019 - 2020 云却<br>
       由<a href="http://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
       主题-<a href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a>
       
