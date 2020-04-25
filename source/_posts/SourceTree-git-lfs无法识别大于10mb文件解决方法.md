@@ -26,4 +26,11 @@ SourceTree 使用lfs时，单个文件大于10mb时会导致无法追踪。虽�
 ![image-20191216225102801](SourceTree-git-lfs无法识别大于10mb文件解决方法\image-20191216225102801.png)
 
 
-至于为什么比较设置会影响lfs，可能是个BUG。
+# 其他设置：
+![QQ截图20200425152915](SourceTree-git-lfs无法识别大于10mb文件解决方法/QQ截图20200425152915.png)
+
+在全局git配置文件中增加  
+```
+[lfs]  
+  contenttype = 0
+```
