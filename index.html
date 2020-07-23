@@ -38,7 +38,7 @@
     <h2 class="author">云却</h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>37</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>38</strong><br>文章</div></a>
       <a href="/categories"><div><strong>20</strong><br>分类</div></a>
       <a href="/tags"><div><strong>59</strong><br>标签</div></a>
     </div>
@@ -135,11 +135,73 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://kumokyaku.github.io/2020/05/24/九识-终极境界/" data-id="ckakh50qy000otsl5s2itq52i" class="article-share-link">分享</a>
+      <a data-url="https://kumokyaku.github.io/2020/05/24/九识-终极境界/" data-id="ckcywkdmw002bn8l54mabq5ps" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/哲学/">哲学</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/小说/">小说</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/脑洞/">脑洞</a></li></ul>
 
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-树莓派经验笔记" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/05/24/树莓派经验笔记/" class="article-date">
+  <time class="post-time" datetime="2020-05-24T15:46:25.000Z" itemprop="datePublished">
+    <span class="post-month">5月</span><br/>
+    <span class="post-day">24</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/24/树莓派经验笔记/">树莓派经验笔记</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/游戏设计/">游戏设计</a>
+  </div>
+
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>country=CN<br>network={<br>ssid=”ziroom501”<br>psk=”ziroomer002”<br>key_mgmt=WPA-PSK<br>priority=1<br>}</p>
+<p>============================上面的好使，下面的无效</p>
+<p>auto lo<br>iface lo inet loopback</p>
+<p>auto eth0<br>iface eth0 inet dhcp</p>
+<p>allow-hotplug wlan0<br>auto wlan0<br>iface wlan0 inet dhcp<br>    wpa-ssid ziroom501<br>    wpa-psk ziroomer002</p>
+<h1 id="树莓派docker装conflence"><a href="#树莓派docker装conflence" class="headerlink" title="树莓派docker装conflence"></a>树莓派docker装conflence</h1><p>教程 <a href="https://www.cnblogs.com/rslai/p/8845777.html" target="_blank" rel="noopener">https://www.cnblogs.com/rslai/p/8845777.html</a></p>
+<p>arm 镜像 <a href="https://hub.docker.com/search?q=confluence&amp;type=image&amp;architecture=arm" target="_blank" rel="noopener">https://hub.docker.com/search?q=confluence&amp;type=image&amp;architecture=arm</a></p>
+<p>docker run -d –name confluence -p 8090:8090 –user root:root ottar63/rpi-mysql-confluence:latest</p>
+<p>docker cp confluence:/opt/atlassian/confluence/confluence/WEB-INF/lib/atlassian-extras-decoder-v2-3.4.1.jar /home</p>
+<p>docker cp /home/atlassian-extras-decoder-v2-3.4.1.jar confluence:/opt/atlassian/confluence/confluence/WEB-INF/lib/</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://kumokyaku.github.io/2020/05/24/树莓派经验笔记/" data-id="ckcywkdni0036n8l5h2xl6jlo" class="article-share-link">分享</a>
+      
+      
     </footer>
   </div>
   
@@ -227,7 +289,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://kumokyaku.github.io/2020/05/24/论游戏设计/" data-id="ckakh50t2006atsl58r0czq3i" class="article-share-link">分享</a>
+      <a data-url="https://kumokyaku.github.io/2020/05/24/论游戏设计/" data-id="ckcywkdnr003vn8l5zkxko097" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/心得/">心得</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/游戏/">游戏</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/策划/">策划</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/设定/">设定</a></li></ul>
@@ -290,7 +352,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://kumokyaku.github.io/2020/05/06/从Flag标志到全局事件容器/" data-id="ckakh50r2000utsl52t40osyd" class="article-share-link">分享</a>
+      <a data-url="https://kumokyaku.github.io/2020/05/06/从Flag标志到全局事件容器/" data-id="ckcywkdmo0021n8l5p1ym0fbv" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/unity/">unity</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/架构/">架构</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/程序/">程序</a></li></ul>
@@ -357,7 +419,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://kumokyaku.github.io/2019/12/25/求解型AI设计思路/" data-id="ckakh50u5007etsl5ms6ng3as" class="article-share-link">分享</a>
+      <a data-url="https://kumokyaku.github.io/2019/12/25/求解型AI设计思路/" data-id="ckcywkdnm003hn8l5sowclhim" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AI/">AI</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/游戏设计/">游戏设计</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/程序/">程序</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/行为设计/">行为设计</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/软件开发/">软件开发</a></li></ul>
@@ -417,7 +479,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://kumokyaku.github.io/2019/12/25/Observer模式弱引用的一些想法/" data-id="ckakh50u4007dtsl5p55mwpsh" class="article-share-link">分享</a>
+      <a data-url="https://kumokyaku.github.io/2019/12/25/Observer模式弱引用的一些想法/" data-id="ckcywkdfd000hn8l5b3v9poi0" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/UniRx/">UniRx</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/异步/">异步</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/程序/">程序</a></li></ul>
@@ -477,7 +539,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://kumokyaku.github.io/2019/12/16/SourceTree-git-lfs无法识别大于10mb文件解决方法/" data-id="ckakh50qu000ftsl5ea9rvby7" class="article-share-link">分享</a>
+      <a data-url="https://kumokyaku.github.io/2019/12/16/SourceTree-git-lfs无法识别大于10mb文件解决方法/" data-id="ckcywkdma001qn8l5d2oexv6d" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Unity/">Unity</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/游戏开发/">游戏开发</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/程序/">程序</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/软件开发/">软件开发</a></li></ul>
@@ -537,7 +599,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://kumokyaku.github.io/2019/12/14/数据模型的直接数据与间接数据/" data-id="ckakh50rh001mtsl5a2z8p6yy" class="article-share-link">分享</a>
+      <a data-url="https://kumokyaku.github.io/2019/12/14/数据模型的直接数据与间接数据/" data-id="ckcywkdne0030n8l597wayoad" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Unity/">Unity</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/程序/">程序</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
@@ -603,7 +665,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://kumokyaku.github.io/2019/12/13/git的快速入门教程/" data-id="ckakh50uw007stsl5iyvfis42" class="article-share-link">分享</a>
+      <a data-url="https://kumokyaku.github.io/2019/12/13/git的快速入门教程/" data-id="ckcywkdmr0025n8l5ml69fwje" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Unity/">Unity</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/游戏开发/">游戏开发</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/程序/">程序</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/软件开发/">软件开发</a></li></ul>
@@ -686,71 +748,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://kumokyaku.github.io/2019/09/23/Houdini学习笔记/" data-id="ckakh50qp0009tsl59thgmdka" class="article-share-link">分享</a>
+      <a data-url="https://kumokyaku.github.io/2019/09/23/Houdini学习笔记/" data-id="ckcywkdml001zn8l5zl0r0qmz" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Houdini/">Houdini</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/心得/">心得</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-  
-    <article id="post-冰川场景制作过程" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/09/04/冰川场景制作过程/" class="article-date">
-  <time class="post-time" datetime="2019-09-04T03:39:18.000Z" itemprop="datePublished">
-    <span class="post-month">9月</span><br/>
-    <span class="post-day">04</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/04/冰川场景制作过程/">冰川场景制作过程</a>
-    </h1>
-  
-
-        <div>
-          
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/游戏制作/">游戏制作</a>
-  </div>
-
-          
-              
-
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="1-确定主视觉"><a href="#1-确定主视觉" class="headerlink" title="1.确定主视觉"></a>1.确定主视觉</h1><p>由于我们不在一个项目中，我们以下面的参考图作为主视觉</p>
-<h1 id="2-寻找冰川参考图"><a href="#2-寻找冰川参考图" class="headerlink" title="2.寻找冰川参考图"></a>2.寻找冰川参考图</h1><h2 id="幻想风格参考"><a href="#幻想风格参考" class="headerlink" title="幻想风格参考"></a>幻想风格参考</h2><p><a href="https://twitter.com/_SWAV_/status/1102923550556475392?s=20" target="_blank" rel="noopener"><img src="https://pbs.twimg.com/media/D05eqBcVAAEvpGi?format=jpg&amp;name=large" alt="源地址"></a></p>
-<p><a href="https://huaban.com/go/?pin_id=922172187" target="_blank" rel="noopener"><img src="https://hbimg.huabanimg.com/e2b5eb47e8d3d5c569c551abf1bb17bf9a9b821fb307-sygzrU_fw658" alt="源地址"></a></p>
-        
-          <p class="article-more-link">
-            <a href="/2019/09/04/冰川场景制作过程/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://kumokyaku.github.io/2019/09/04/冰川场景制作过程/" data-id="ckakh50r50011tsl5vkg5z86s" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/冰川/">冰川</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/场景/">场景</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/美术/">美术</a></li></ul>
 
     </footer>
   </div>
@@ -805,7 +806,7 @@
     <h2 class="author">云却</h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>37</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>38</strong><br>文章</div></a>
       <a href="/categories"><div><strong>20</strong><br>分类</div></a>
       <a href="/tags"><div><strong>59</strong><br>标签</div></a>
     </div>

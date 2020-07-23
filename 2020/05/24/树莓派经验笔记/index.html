@@ -3,15 +3,19 @@
 <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
-  <title>归档: 2016/2 | 那咋爆裂啊</title>
+  <title>树莓派经验笔记 | 那咋爆裂啊</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="那咋爆裂啊">
-<meta property="og:url" content="https://kumokyaku.github.io/archives/2016/02/index.html">
+  <meta name="description" content="country=CNnetwork={ssid=”ziroom501”psk=”ziroomer002”key_mgmt=WPA-PSKpriority=1} ============================上面的好使，下面的无效 auto loiface lo inet loopback auto eth0iface eth0 inet dhcp allow-hotplug wlan0a">
+<meta property="og:type" content="article">
+<meta property="og:title" content="树莓派经验笔记">
+<meta property="og:url" content="https://kumokyaku.github.io/2020/05/24/树莓派经验笔记/index.html">
 <meta property="og:site_name" content="那咋爆裂啊">
+<meta property="og:description" content="country=CNnetwork={ssid=”ziroom501”psk=”ziroomer002”key_mgmt=WPA-PSKpriority=1} ============================上面的好使，下面的无效 auto loiface lo inet loopback auto eth0iface eth0 inet dhcp allow-hotplug wlan0a">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-05-24T15:46:25.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="那咋爆裂啊">
+<meta name="twitter:title" content="树莓派经验笔记">
+<meta name="twitter:description" content="country=CNnetwork={ssid=”ziroom501”psk=”ziroomer002”key_mgmt=WPA-PSKpriority=1} ============================上面的好使，下面的无效 auto loiface lo inet loopback auto eth0iface eth0 inet dhcp allow-hotplug wlan0a">
   
     <link rel="alternate" href="/atom.xml" title="那咋爆裂啊" type="application/atom+xml">
   
@@ -64,64 +68,85 @@
   </div>
 </div>
 
-        <section id="main">
-  
-  
+        <section id="main"><article id="post-树莓派经验笔记" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/05/24/树莓派经验笔记/" class="article-date">
+  <time class="post-time" datetime="2020-05-24T15:46:25.000Z" itemprop="datePublished">
+    <span class="post-month">5月</span><br/>
+    <span class="post-day">24</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
     
     
-      
-      
-      <section class="archives-wrap animated rubberBand">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      树莓派经验笔记
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/游戏设计/">游戏设计</a>
+  </div>
+
+          
+              
+
+          
         </div>
-        <div class="archives">
+      </header>
     
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/02/04/MMD2FBX分析/" class="archive-article-date">
-  <time class="post-time" datetime="2016-02-04T15:46:55.000Z" itemprop="datePublished">
-    <span class="post-month">2月</span><br/>
-    <span class="post-day">04</span>
-  </time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/02/04/MMD2FBX分析/">MMD2FBX分析</a>
-    </h1>
-  
+        <p>country=CN<br>network={<br>ssid=”ziroom501”<br>psk=”ziroomer002”<br>key_mgmt=WPA-PSK<br>priority=1<br>}</p>
+<p>============================上面的好使，下面的无效</p>
+<p>auto lo<br>iface lo inet loopback</p>
+<p>auto eth0<br>iface eth0 inet dhcp</p>
+<p>allow-hotplug wlan0<br>auto wlan0<br>iface wlan0 inet dhcp<br>    wpa-ssid ziroom501<br>    wpa-psk ziroomer002</p>
+<h1 id="树莓派docker装conflence"><a href="#树莓派docker装conflence" class="headerlink" title="树莓派docker装conflence"></a>树莓派docker装conflence</h1><p>教程 <a href="https://www.cnblogs.com/rslai/p/8845777.html" target="_blank" rel="noopener">https://www.cnblogs.com/rslai/p/8845777.html</a></p>
+<p>arm 镜像 <a href="https://hub.docker.com/search?q=confluence&amp;type=image&amp;architecture=arm" target="_blank" rel="noopener">https://hub.docker.com/search?q=confluence&amp;type=image&amp;architecture=arm</a></p>
+<p>docker run -d –name confluence -p 8090:8090 –user root:root ottar63/rpi-mysql-confluence:latest</p>
+<p>docker cp confluence:/opt/atlassian/confluence/confluence/WEB-INF/lib/atlassian-extras-decoder-v2-3.4.1.jar /home</p>
+<p>docker cp /home/atlassian-extras-decoder-v2-3.4.1.jar confluence:/opt/atlassian/confluence/confluence/WEB-INF/lib/</p>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/02/04/小说设定/" class="archive-article-date">
-  <time class="post-time" datetime="2016-02-04T15:46:55.000Z" itemprop="datePublished">
-    <span class="post-month">2月</span><br/>
-    <span class="post-day">04</span>
-  </time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/02/04/小说设定/">小说设定</a>
-    </h1>
-  
-
-    </header>
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://kumokyaku.github.io/2020/05/24/树莓派经验笔记/" data-id="ckcywkdni0036n8l5h2xl6jlo" class="article-share-link">分享</a>
+      
+      
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/05/24/九识-终极境界/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          九识-终极境界
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/05/24/论游戏设计/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">论游戏设计</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
+
 
 
 </section>

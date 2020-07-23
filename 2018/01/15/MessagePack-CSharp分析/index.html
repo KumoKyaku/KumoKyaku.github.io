@@ -6,7 +6,7 @@
   <title>MessagePack-CSharp分析 | 那咋爆裂啊</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="序列化内存分配部分：    一次拷贝（开销很小，几乎没有优化必要）    一次内存分配（可以避免） public static byte[] Serialize&amp;lt;T&amp;gt;(T obj) {     序列过程中：使用线程不共享byte buffer pool，64K。     序列完成使用Buffer.BlockCopy拷贝到新buffer ，新的bytebuffer 直接new的，所以有内">
-<meta name="keywords" content="心得,序列化,类库,分析,DotNET">
+<meta name="keywords" content="序列化,类库,分析,DotNET,心得">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MessagePack-CSharp分析">
 <meta property="og:url" content="https://kumokyaku.github.io/2018/01/15/MessagePack-CSharp分析/index.html">
@@ -43,7 +43,7 @@
     <h2 class="author">云却</h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>37</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>38</strong><br>文章</div></a>
       <a href="/categories"><div><strong>20</strong><br>分类</div></a>
       <a href="/tags"><div><strong>59</strong><br>标签</div></a>
     </div>
@@ -125,7 +125,7 @@ public static ArraySegment&lt;byte&gt; SerializeUnsafe&lt;T&gt;(T obj)
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://kumokyaku.github.io/2018/01/15/MessagePack-CSharp分析/" data-id="ckakh50qq000atsl5h4zf04ih" class="article-share-link">分享</a>
+      <a data-url="https://kumokyaku.github.io/2018/01/15/MessagePack-CSharp分析/" data-id="ckcywkdfa000gn8l5du8krk3y" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DotNET/">DotNET</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/分析/">分析</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/序列化/">序列化</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/心得/">心得</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/类库/">类库</a></li></ul>
@@ -197,7 +197,7 @@ public static ArraySegment&lt;byte&gt; SerializeUnsafe&lt;T&gt;(T obj)
     <h2 class="author">云却</h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>37</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>38</strong><br>文章</div></a>
       <a href="/categories"><div><strong>20</strong><br>分类</div></a>
       <a href="/tags"><div><strong>59</strong><br>标签</div></a>
     </div>
