@@ -10,6 +10,13 @@ tags: #文章标签 可以省略
 description: #你对本页的描述 可以省略
 ---
 
+- **异步编程两个核心关键字理解**：  
+    + await == UnsafeOnCompleted == 将下文代码包装成回调函数注册到Task中。  
+    记住 await 时才调用 UnsafeOnCompleted即可。
+    + async == AsyncTaskMethodBuilder.Create().Task,并在方法末尾SetResult。  
+    async是隐藏的生成一个Task/ValueTask。
+---
+---
 
 * 返回值为Task的方法的Task,是何时构造的？如果第一个await没有同步完成，那么会创建新的task.
   * 返回值为Task的方法同步完成，不会new Task,内部使用的单例的已完成的Task,不会有额外开销。
@@ -27,6 +34,8 @@ description: #你对本页的描述 可以省略
 * `await`的作用是将方法在状态机中分离为不同阶段。
 * `异步方法嵌套`Task被封装在completionAction回调中，**释放这个Action,即释放所有后续Task**.
 ---
+ICriticalNotifyCompletion 基本上算是过时，用INotifyCompletion 即可。
+
 ```cs
 public interface ICriticalNotifyCompletion : INotifyCompletion
 {
