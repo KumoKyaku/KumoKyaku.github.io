@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>树莓派经验笔记 | 那咋爆裂啊</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="country&#x3D;CNnetwork&#x3D;{ssid&#x3D;”ziroom501”psk&#x3D;”ziroomer002”key_mgmt&#x3D;WPA-PSKpriority&#x3D;1} &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="树莓派经验笔记">
+<meta property="og:url" content="https://kumokyaku.github.io/2020/05/24/%E6%A0%91%E8%8E%93%E6%B4%BE%E7%BB%8F%E9%AA%8C%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="那咋爆裂啊">
+<meta property="og:description" content="country&#x3D;CNnetwork&#x3D;{ssid&#x3D;”ziroom501”psk&#x3D;”ziroomer002”key_mgmt&#x3D;WPA-PSKpriority&#x3D;1} &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-05-24T15:46:25.000Z">
+<meta property="article:modified_time" content="2020-05-24T15:46:25.000Z">
+<meta property="article:author" content="云却">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="那咋爆裂啊" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/plugin/bganimation/bg.css">
+
+  
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+        <div class="widget-wrap mobile-header">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://avatars0.githubusercontent.com/u/15962980?s=400&amp;u=9f44d64956034405c51c0871949db00551133265&amp;v=4">
+    <h2 class="author">云却</h2>
+    <h3 class="description"></h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>40</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>22</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>63</strong><br>标签</div></a>
+    </div>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+        <section id="main"><article id="post-树莓派经验笔记" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/05/24/%E6%A0%91%E8%8E%93%E6%B4%BE%E7%BB%8F%E9%AA%8C%E7%AC%94%E8%AE%B0/" class="article-date">
+  <time class="post-time" datetime="2020-05-24T15:46:25.000Z" itemprop="datePublished">
+    <span class="post-month">5月</span><br/>
+    <span class="post-day">24</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      树莓派经验笔记
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%B8%B8%E6%88%8F%E8%AE%BE%E8%AE%A1/">游戏设计</a>
+  </div>
+
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>country&#x3D;CN<br>network&#x3D;{<br>ssid&#x3D;”ziroom501”<br>psk&#x3D;”ziroomer002”<br>key_mgmt&#x3D;WPA-PSK<br>priority&#x3D;1<br>}</p>
+<p>&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;上面的好使，下面的无效</p>
+<p>auto lo<br>iface lo inet loopback</p>
+<p>auto eth0<br>iface eth0 inet dhcp</p>
+<p>allow-hotplug wlan0<br>auto wlan0<br>iface wlan0 inet dhcp<br>    wpa-ssid ziroom501<br>    wpa-psk ziroomer002</p>
+<h1 id="树莓派docker装conflence"><a href="#树莓派docker装conflence" class="headerlink" title="树莓派docker装conflence"></a>树莓派docker装conflence</h1><p>教程 <a target="_blank" rel="noopener" href="https://www.cnblogs.com/rslai/p/8845777.html">https://www.cnblogs.com/rslai/p/8845777.html</a></p>
+<p>arm 镜像 <a target="_blank" rel="noopener" href="https://hub.docker.com/search?q=confluence&amp;type=image&amp;architecture=arm">https://hub.docker.com/search?q=confluence&amp;type=image&amp;architecture=arm</a></p>
+<p>docker run -d –name confluence -p 8090:8090 –user root:root ottar63&#x2F;rpi-mysql-confluence:latest</p>
+<p>docker cp confluence:&#x2F;opt&#x2F;atlassian&#x2F;confluence&#x2F;confluence&#x2F;WEB-INF&#x2F;lib&#x2F;atlassian-extras-decoder-v2-3.4.1.jar &#x2F;home</p>
+<p>docker cp &#x2F;home&#x2F;atlassian-extras-decoder-v2-3.4.1.jar confluence:&#x2F;opt&#x2F;atlassian&#x2F;confluence&#x2F;confluence&#x2F;WEB-INF&#x2F;lib&#x2F;</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://kumokyaku.github.io/2020/05/24/%E6%A0%91%E8%8E%93%E6%B4%BE%E7%BB%8F%E9%AA%8C%E7%AC%94%E8%AE%B0/" data-id="cl2r3ul5r00258kvl5o4n307b" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/05/24/%E4%B9%9D%E8%AF%86-%E7%BB%88%E6%9E%81%E5%A2%83%E7%95%8C/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          九识-终极境界
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/05/24/%E8%AE%BA%E6%B8%B8%E6%88%8F%E8%AE%BE%E8%AE%A1/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">论游戏设计</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <h1 class="blog-title">那咋爆裂啊</h1>
+    <h2 class="blog-subtitle"></h2>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://avatars0.githubusercontent.com/u/15962980?s=400&amp;u=9f44d64956034405c51c0871949db00551133265&amp;v=4">
+    <h2 class="author">云却</h2>
+    <h3 class="description"></h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>40</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>22</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>63</strong><br>标签</div></a>
+    </div>
+
+
+
+    <div class="social-link">
+      
+        <a class="hvr-bounce-in" href="https://github.com/KumoKyaku" target="_blank" title="Github">
+          Github
+        </a>
+      
+    </div>
+
+    <div class="friend-link">
+      <h2>友情链接</h2>
+      
+        <a class="hvr-bounce-in" href="http://dumoedss.cc/?p=211" target="_blank" title="萌就是正义">
+          萌就是正义
+        </a>
+      
+    </div>
+  </div>
+</div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy;2021 - 2022 云却<br>
+      由<a href="http://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
+      主题-<a target="_blank" rel="noopener" href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a>
+      
+    </div>
+    
+  </div>
+</footer>
+    </div>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//apps.bdimg.com/libs/wow/0.1.6/wow.min.js"></script>
+<script>
+new WOW().init();
+</script>   
+
+
+  
+<link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
+
+  
+<script src="/plugin/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+  
+<link rel="stylesheet" href="/plugin/galmenu/GalMenu.css">
+
+  
+<script src="/plugin/galmenu/GalMenu.js"></script>
+
+  <div class="GalMenu GalDropDown">
+      <div class="circle" id="gal">
+        <div class="ring">
+          
+            <a href="/" title="" class="menuItem">首页</a>
+          
+            <a href="/tags" title="" class="menuItem">标签</a>
+          
+            <a href="/categories" title="" class="menuItem">分类</a>
+          
+            <a href="/archives" title="" class="menuItem">归档</a>
+          
+            <a href="/xxxxxxxxx" title="" class="menuItem">xxx</a>
+          
+            <a href="/xxxxxxx" title="" class="menuItem">xxxx</a>
+          
+        </div>
+        
+          <audio id="audio" src="#"></audio>
+        
+      </div> 
+</div>
+<div id="overlay" style="opacity: 1; cursor: pointer;"></div>
+  <script type="text/javascript">var items = document.querySelectorAll('.menuItem');
+    for (var i = 0,
+    l = items.length; i < l; i++) {
+      items[i].style.left = (50 - 35 * Math.cos( - 0.5 * Math.PI - 2 * (1 / l) * i * Math.PI)).toFixed(4) + "%";
+      items[i].style.top = (50 + 35 * Math.sin( - 0.5 * Math.PI - 2 * (1 / l) * i * Math.PI)).toFixed(4) + "%"
+    }</script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('body').GalMenu({
+      'menu': 'GalDropDown'
+    })
+  });
+</script>
+
+  <section class="hidden-xs"> 
+  <ul class="cb-slideshow"> 
+    <li><span>苟利</span></li> 
+    <li><span>国家</span></li> 
+    <li><span>生死以</span></li> 
+    <li><span>岂能</span></li> 
+    <li><span>祸福</span></li> 
+    <li><span>趋避之</span></li> 
+  </ul>
+</section>
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

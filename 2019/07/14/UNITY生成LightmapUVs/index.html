@@ -1,25 +1,28 @@
 <!DOCTYPE html>
 <html>
-<head><meta name="generator" content="Hexo 3.9.0">
+<head>
   <meta charset="utf-8">
   
   <title>UNITY生成LightmapUVs | 那咋爆裂啊</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="模型通常含有8个UV。在不同的软件中叫法略有不同。   在unity中，分别叫[uv,uv2,uv3,……,uv7]。不存在uv1。在Mesh API中，也已经废弃uv1属性。在一些其他 API中，uv1属性 指的是第二通道的uv。 uv0属性指第一通道uv。 123456789101112131415161718192021222324252627282930313233343536373839">
-<meta name="keywords" content="模型,渲染,UV,技术">
 <meta property="og:type" content="article">
 <meta property="og:title" content="UNITY生成LightmapUVs">
-<meta property="og:url" content="https://kumokyaku.github.io/2019/07/14/UNITY生成LightmapUVs/index.html">
+<meta property="og:url" content="https://kumokyaku.github.io/2019/07/14/UNITY%E7%94%9F%E6%88%90LightmapUVs/index.html">
 <meta property="og:site_name" content="那咋爆裂啊">
 <meta property="og:description" content="模型通常含有8个UV。在不同的软件中叫法略有不同。   在unity中，分别叫[uv,uv2,uv3,……,uv7]。不存在uv1。在Mesh API中，也已经废弃uv1属性。在一些其他 API中，uv1属性 指的是第二通道的uv。 uv0属性指第一通道uv。 123456789101112131415161718192021222324252627282930313233343536373839">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://kumokyaku.github.io/2019/07/14/UNITY生成LightmapUVs/testuv.jpg">
-<meta property="og:image" content="https://kumokyaku.github.io/2019/07/14/UNITY生成LightmapUVs/testuv2.jpg">
-<meta property="og:updated_time" content="2019-07-14T15:10:28.429Z">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://kumokyaku.github.io/2019/07/14/UNITY%E7%94%9F%E6%88%90LightmapUVs/testuv.jpg">
+<meta property="og:image" content="https://kumokyaku.github.io/2019/07/14/UNITY%E7%94%9F%E6%88%90LightmapUVs/testuv2.jpg">
+<meta property="article:published_time" content="2019-07-14T14:05:02.000Z">
+<meta property="article:modified_time" content="2020-11-13T08:55:41.363Z">
+<meta property="article:author" content="云却">
+<meta property="article:tag" content="渲染">
+<meta property="article:tag" content="模型">
+<meta property="article:tag" content="UV">
+<meta property="article:tag" content="技术">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="UNITY生成LightmapUVs">
-<meta name="twitter:description" content="模型通常含有8个UV。在不同的软件中叫法略有不同。   在unity中，分别叫[uv,uv2,uv3,……,uv7]。不存在uv1。在Mesh API中，也已经废弃uv1属性。在一些其他 API中，uv1属性 指的是第二通道的uv。 uv0属性指第一通道uv。 123456789101112131415161718192021222324252627282930313233343536373839">
-<meta name="twitter:image" content="https://kumokyaku.github.io/2019/07/14/UNITY生成LightmapUVs/testuv.jpg">
+<meta name="twitter:image" content="https://kumokyaku.github.io/2019/07/14/UNITY%E7%94%9F%E6%88%90LightmapUVs/testuv.jpg">
   
     <link rel="alternate" href="/atom.xml" title="那咋爆裂啊" type="application/atom+xml">
   
@@ -29,12 +32,16 @@
   
     <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
   
-  <link rel="stylesheet" href="/css/style.css">
-  <link rel="stylesheet" href="/plugin/bganimation/bg.css">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/plugin/bganimation/bg.css">
+
   
 
-</head>
-</html>
+<meta name="generator" content="Hexo 5.4.2"></head>
+
 <body>
   <div id="container">
     <div id="wrap">
@@ -46,9 +53,9 @@
     <h2 class="author">云却</h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>27</strong><br>文章</div></a>
-      <a href="/categories"><div><strong>16</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>49</strong><br>标签</div></a>
+      <a href="/archives"><div><strong>40</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>22</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>63</strong><br>标签</div></a>
     </div>
     <ul class="blog-link">
      
@@ -74,7 +81,7 @@
 
         <section id="main"><article id="post-UNITY生成LightmapUVs" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/07/14/UNITY生成LightmapUVs/" class="article-date">
+    <a href="/2019/07/14/UNITY%E7%94%9F%E6%88%90LightmapUVs/" class="article-date">
   <time class="post-time" datetime="2019-07-14T14:05:02.000Z" itemprop="datePublished">
     <span class="post-month">7月</span><br/>
     <span class="post-day">14</span>
@@ -110,20 +117,21 @@
       
         <p>模型通常含有8个UV。在不同的软件中叫法略有不同。  </p>
 <p>在unity中，分别叫[uv,uv2,uv3,……,uv7]。不存在uv1。<br>在Mesh API中，也已经废弃uv1属性。<br>在一些其他 API中，uv1属性 指的是第二通道的uv。 uv0属性指第一通道uv。</p>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">UnityEngine.Rendering</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// Control which UV channels are affected by the Texture Animation Module</span></span><br><span class="line">    [<span class="meta">Flags</span>]</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">enum</span> UVChannelFlags</span><br><span class="line">    &#123;</span><br><span class="line">        UV0 = <span class="number">1</span>,</span><br><span class="line">        UV1 = <span class="number">2</span>,</span><br><span class="line">        UV2 = <span class="number">4</span>,</span><br><span class="line">        UV3 = <span class="number">8</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">UnityEditor</span></span><br><span class="line">&#123;</span><br><span class="line">    [<span class="meta">Flags</span>]</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">enum</span> VertexChannelCompressionFlags</span><br><span class="line">    &#123;</span><br><span class="line">        None        = <span class="number">0</span>,</span><br><span class="line">        Position    = <span class="number">1</span> &lt;&lt; <span class="number">0</span>,</span><br><span class="line">        Normal      = <span class="number">1</span> &lt;&lt; <span class="number">1</span>,</span><br><span class="line">        Tangent     = <span class="number">1</span> &lt;&lt; <span class="number">2</span>,</span><br><span class="line">        Color       = <span class="number">1</span> &lt;&lt; <span class="number">3</span>,</span><br><span class="line">        TexCoord0   = <span class="number">1</span> &lt;&lt; <span class="number">4</span>,</span><br><span class="line">        TexCoord1   = <span class="number">1</span> &lt;&lt; <span class="number">5</span>,</span><br><span class="line">        TexCoord2   = <span class="number">1</span> &lt;&lt; <span class="number">6</span>,</span><br><span class="line">        TexCoord3   = <span class="number">1</span> &lt;&lt; <span class="number">7</span>,</span><br><span class="line"></span><br><span class="line">        [<span class="meta">System.Obsolete(<span class="meta-string">"Use Position instead (UnityUpgradable) -&gt; Position"</span>, false)</span>]</span><br><span class="line">        kPosition   = <span class="number">1</span> &lt;&lt; <span class="number">0</span>,</span><br><span class="line">        [<span class="meta">System.Obsolete(<span class="meta-string">"Use Normal instead (UnityUpgradable) -&gt; Normal"</span>, false)</span>]</span><br><span class="line">        kNormal     = <span class="number">1</span> &lt;&lt; <span class="number">1</span>,</span><br><span class="line">        [<span class="meta">System.Obsolete(<span class="meta-string">"Use Color instead (UnityUpgradable) -&gt; Color"</span>, false)</span>]</span><br><span class="line">        kColor      = <span class="number">1</span> &lt;&lt; <span class="number">2</span>,</span><br><span class="line">        [<span class="meta">System.Obsolete(<span class="meta-string">"Use TexCoord0 instead (UnityUpgradable) -&gt; TexCoord0"</span>, false)</span>]</span><br><span class="line">        kUV0        = <span class="number">1</span> &lt;&lt; <span class="number">3</span>,</span><br><span class="line">        [<span class="meta">System.Obsolete(<span class="meta-string">"Use TexCoord1 instead (UnityUpgradable) -&gt; TexCoord1"</span>, false)</span>]</span><br><span class="line">        kUV1        = <span class="number">1</span> &lt;&lt; <span class="number">4</span>,</span><br><span class="line">        [<span class="meta">System.Obsolete(<span class="meta-string">"Use TexCoord2 instead (UnityUpgradable) -&gt; TexCoord2"</span>, false)</span>]</span><br><span class="line">        kUV2        = <span class="number">1</span> &lt;&lt; <span class="number">5</span>,</span><br><span class="line">        [<span class="meta">System.Obsolete(<span class="meta-string">"Use TexCoord3 instead (UnityUpgradable) -&gt; TexCoord3"</span>, false)</span>]</span><br><span class="line">        kUV3        = <span class="number">1</span> &lt;&lt; <span class="number">6</span>,</span><br><span class="line">        [<span class="meta">System.Obsolete(<span class="meta-string">"Use Tangent instead (UnityUpgradable) -&gt; Tangent"</span>, false)</span>]</span><br><span class="line">        kTangent    = <span class="number">1</span> &lt;&lt; <span class="number">7</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">UnityEngine.Rendering</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// Control which UV channels are affected by the Texture Animation Module</span></span><br><span class="line">    [<span class="meta">Flags</span>]</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">enum</span> UVChannelFlags</span><br><span class="line">    &#123;</span><br><span class="line">        UV0 = <span class="number">1</span>,</span><br><span class="line">        UV1 = <span class="number">2</span>,</span><br><span class="line">        UV2 = <span class="number">4</span>,</span><br><span class="line">        UV3 = <span class="number">8</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">UnityEditor</span></span><br><span class="line">&#123;</span><br><span class="line">    [<span class="meta">Flags</span>]</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">enum</span> VertexChannelCompressionFlags</span><br><span class="line">    &#123;</span><br><span class="line">        None        = <span class="number">0</span>,</span><br><span class="line">        Position    = <span class="number">1</span> &lt;&lt; <span class="number">0</span>,</span><br><span class="line">        Normal      = <span class="number">1</span> &lt;&lt; <span class="number">1</span>,</span><br><span class="line">        Tangent     = <span class="number">1</span> &lt;&lt; <span class="number">2</span>,</span><br><span class="line">        Color       = <span class="number">1</span> &lt;&lt; <span class="number">3</span>,</span><br><span class="line">        TexCoord0   = <span class="number">1</span> &lt;&lt; <span class="number">4</span>,</span><br><span class="line">        TexCoord1   = <span class="number">1</span> &lt;&lt; <span class="number">5</span>,</span><br><span class="line">        TexCoord2   = <span class="number">1</span> &lt;&lt; <span class="number">6</span>,</span><br><span class="line">        TexCoord3   = <span class="number">1</span> &lt;&lt; <span class="number">7</span>,</span><br><span class="line"></span><br><span class="line">        [<span class="meta">System.Obsolete(<span class="string">&quot;Use Position instead (UnityUpgradable) -&gt; Position&quot;</span>, false)</span>]</span><br><span class="line">        kPosition   = <span class="number">1</span> &lt;&lt; <span class="number">0</span>,</span><br><span class="line">        [<span class="meta">System.Obsolete(<span class="string">&quot;Use Normal instead (UnityUpgradable) -&gt; Normal&quot;</span>, false)</span>]</span><br><span class="line">        kNormal     = <span class="number">1</span> &lt;&lt; <span class="number">1</span>,</span><br><span class="line">        [<span class="meta">System.Obsolete(<span class="string">&quot;Use Color instead (UnityUpgradable) -&gt; Color&quot;</span>, false)</span>]</span><br><span class="line">        kColor      = <span class="number">1</span> &lt;&lt; <span class="number">2</span>,</span><br><span class="line">        [<span class="meta">System.Obsolete(<span class="string">&quot;Use TexCoord0 instead (UnityUpgradable) -&gt; TexCoord0&quot;</span>, false)</span>]</span><br><span class="line">        kUV0        = <span class="number">1</span> &lt;&lt; <span class="number">3</span>,</span><br><span class="line">        [<span class="meta">System.Obsolete(<span class="string">&quot;Use TexCoord1 instead (UnityUpgradable) -&gt; TexCoord1&quot;</span>, false)</span>]</span><br><span class="line">        kUV1        = <span class="number">1</span> &lt;&lt; <span class="number">4</span>,</span><br><span class="line">        [<span class="meta">System.Obsolete(<span class="string">&quot;Use TexCoord2 instead (UnityUpgradable) -&gt; TexCoord2&quot;</span>, false)</span>]</span><br><span class="line">        kUV2        = <span class="number">1</span> &lt;&lt; <span class="number">5</span>,</span><br><span class="line">        [<span class="meta">System.Obsolete(<span class="string">&quot;Use TexCoord3 instead (UnityUpgradable) -&gt; TexCoord3&quot;</span>, false)</span>]</span><br><span class="line">        kUV3        = <span class="number">1</span> &lt;&lt; <span class="number">6</span>,</span><br><span class="line">        [<span class="meta">System.Obsolete(<span class="string">&quot;Use Tangent instead (UnityUpgradable) -&gt; Tangent&quot;</span>, false)</span>]</span><br><span class="line">        kTangent    = <span class="number">1</span> &lt;&lt; <span class="number">7</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p><strong>MeshAPI中SetUV channel 参数为0-7。</strong></p>
 <p>在blender中，通常默认名字为[UVMap，UVMap.001,UVMap.002,……,UVMap.007]。</p>
-<h1 id="测试uv2"><a href="#测试uv2" class="headerlink" title="测试uv2"></a>测试uv2</h1><h2 id="1-将一个含有3个UV的模型导入unity，原样导出后uv如图。"><a href="#1-将一个含有3个UV的模型导入unity，原样导出后uv如图。" class="headerlink" title="1. 将一个含有3个UV的模型导入unity，原样导出后uv如图。"></a>1. 将一个含有3个UV的模型导入unity，原样导出后uv如图。</h2><p>三个通道uv位置不同。<br><img src="/2019/07/14/UNITY生成LightmapUVs/testuv.jpg" alt="img"></p>
-<h2 id="2-在unity中勾选Generate-Lightmap-UVs-导出模型。"><a href="#2-在unity中勾选Generate-Lightmap-UVs-导出模型。" class="headerlink" title="2. 在unity中勾选Generate Lightmap UVs,导出模型。"></a>2. 在unity中勾选Generate Lightmap UVs,导出模型。</h2><p><img src="/2019/07/14/UNITY生成LightmapUVs/testuv2.jpg" alt="img"></p>
+<h1 id="测试uv2"><a href="#测试uv2" class="headerlink" title="测试uv2"></a>测试uv2</h1><h2 id="1-将一个含有3个UV的模型导入unity，原样导出后uv如图。"><a href="#1-将一个含有3个UV的模型导入unity，原样导出后uv如图。" class="headerlink" title="1. 将一个含有3个UV的模型导入unity，原样导出后uv如图。"></a>1. 将一个含有3个UV的模型导入unity，原样导出后uv如图。</h2><p>三个通道uv位置不同。<br><img src="/2019/07/14/UNITY%E7%94%9F%E6%88%90LightmapUVs/testuv.jpg" alt="img"></p>
+<h2 id="2-在unity中勾选Generate-Lightmap-UVs-导出模型。"><a href="#2-在unity中勾选Generate-Lightmap-UVs-导出模型。" class="headerlink" title="2. 在unity中勾选Generate Lightmap UVs,导出模型。"></a>2. 在unity中勾选Generate Lightmap UVs,导出模型。</h2><p><img src="/2019/07/14/UNITY%E7%94%9F%E6%88%90LightmapUVs/testuv2.jpg" alt="img"></p>
 <p><code>发现引擎将模型的第二通道UV进行了覆盖，其他通道UV保持不变。</code><br><strong><code>结论：使用多UV实现特殊功能时，尽量将第二通道UV预留。使用第三第四通道UV。</code></strong></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://kumokyaku.github.io/2019/07/14/UNITY生成LightmapUVs/" data-id="ck04vylm6000cfsvhuncgy623" class="article-share-link">分享</a>
+      <a data-url="https://kumokyaku.github.io/2019/07/14/UNITY%E7%94%9F%E6%88%90LightmapUVs/" data-id="cl2r3ul5b000n8kvlav31120e" class="article-share-link">分享</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/UV/">UV</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/技术/">技术</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/模型/">模型</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/渲染/">渲染</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/UV/" rel="tag">UV</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8A%80%E6%9C%AF/" rel="tag">技术</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%A8%A1%E5%9E%8B/" rel="tag">模型</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B8%B2%E6%9F%93/" rel="tag">渲染</a></li></ul>
 
     </footer>
   </div>
@@ -131,7 +139,7 @@
     
 <nav id="article-nav">
   
-    <a href="/2019/09/04/冰川场景制作过程/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/09/04/%E5%86%B0%E5%B7%9D%E5%9C%BA%E6%99%AF%E5%88%B6%E4%BD%9C%E8%BF%87%E7%A8%8B/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">
         
@@ -141,7 +149,7 @@
     </a>
   
   
-    <a href="/2019/07/14/如何进行人物设计/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2019/07/14/%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%E4%BA%BA%E7%89%A9%E8%AE%BE%E8%AE%A1/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">下一篇</strong>
       <div class="article-nav-title">如何进行人物设计</div>
     </a>
@@ -192,9 +200,9 @@
     <h2 class="author">云却</h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>27</strong><br>文章</div></a>
-      <a href="/categories"><div><strong>16</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>49</strong><br>标签</div></a>
+      <a href="/archives"><div><strong>40</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>22</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>63</strong><br>标签</div></a>
     </div>
 
 
@@ -226,9 +234,9 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy;2018 - 2019 云却<br>
+      &copy;2021 - 2022 云却<br>
       由<a href="http://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
-      主题-<a href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a>
+      主题-<a target="_blank" rel="noopener" href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a>
       
     </div>
     
@@ -244,13 +252,21 @@ new WOW().init();
 </script>   
 
 
-  <link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
-  <script src="/plugin/fancybox/jquery.fancybox.pack.js"></script>
+  
+<link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
+
+  
+<script src="/plugin/fancybox/jquery.fancybox.pack.js"></script>
 
 
 
-  <link rel="stylesheet" href="/plugin/galmenu/GalMenu.css">
-  <script src="/plugin/galmenu/GalMenu.js"></script>
+
+  
+<link rel="stylesheet" href="/plugin/galmenu/GalMenu.css">
+
+  
+<script src="/plugin/galmenu/GalMenu.js"></script>
+
   <div class="GalMenu GalDropDown">
       <div class="circle" id="gal">
         <div class="ring">
@@ -298,7 +314,9 @@ new WOW().init();
     <li><span>趋避之</span></li> 
   </ul>
 </section>
+
 <script src="/js/script.js"></script>
+
 
 
 

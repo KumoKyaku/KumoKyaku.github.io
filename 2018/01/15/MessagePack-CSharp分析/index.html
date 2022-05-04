@@ -1,22 +1,26 @@
 <!DOCTYPE html>
 <html>
-<head><meta name="generator" content="Hexo 3.9.0">
+<head>
   <meta charset="utf-8">
   
   <title>MessagePack-CSharp分析 | 那咋爆裂啊</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="序列化内存分配部分：    一次拷贝（开销很小，几乎没有优化必要）    一次内存分配（可以避免） public static byte[] Serialize&amp;lt;T&amp;gt;(T obj) {     序列过程中：使用线程不共享byte buffer pool，64K。     序列完成使用Buffer.BlockCopy拷贝到新buffer ，新的bytebuffer 直接new的，所以有内">
-<meta name="keywords" content="序列化,类库,分析,DotNET,心得">
+  <meta name="description" content="序列化内存分配部分：	    一次拷贝（开销很小，几乎没有优化必要）	一次内存分配（可以避免） public static byte[] Serialize&lt;T&gt;(T obj) &amp;#123;     序列过程中：使用线程不共享byte buffer pool，64K。     序列完成使用Buffer.BlockCopy拷贝到新buffer ，新的bytebuffer 直接new的，所">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MessagePack-CSharp分析">
-<meta property="og:url" content="https://kumokyaku.github.io/2018/01/15/MessagePack-CSharp分析/index.html">
+<meta property="og:url" content="https://kumokyaku.github.io/2018/01/15/MessagePack-CSharp%E5%88%86%E6%9E%90/index.html">
 <meta property="og:site_name" content="那咋爆裂啊">
-<meta property="og:description" content="序列化内存分配部分：    一次拷贝（开销很小，几乎没有优化必要）    一次内存分配（可以避免） public static byte[] Serialize&amp;lt;T&amp;gt;(T obj) {     序列过程中：使用线程不共享byte buffer pool，64K。     序列完成使用Buffer.BlockCopy拷贝到新buffer ，新的bytebuffer 直接new的，所以有内">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-01-24T15:46:55.000Z">
+<meta property="og:description" content="序列化内存分配部分：	    一次拷贝（开销很小，几乎没有优化必要）	一次内存分配（可以避免） public static byte[] Serialize&lt;T&gt;(T obj) &amp;#123;     序列过程中：使用线程不共享byte buffer pool，64K。     序列完成使用Buffer.BlockCopy拷贝到新buffer ，新的bytebuffer 直接new的，所">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-01-15T15:46:55.000Z">
+<meta property="article:modified_time" content="2019-01-24T15:46:55.000Z">
+<meta property="article:author" content="云却">
+<meta property="article:tag" content="序列化">
+<meta property="article:tag" content="类库">
+<meta property="article:tag" content="分析">
+<meta property="article:tag" content="DotNET">
+<meta property="article:tag" content="心得">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MessagePack-CSharp分析">
-<meta name="twitter:description" content="序列化内存分配部分：    一次拷贝（开销很小，几乎没有优化必要）    一次内存分配（可以避免） public static byte[] Serialize&amp;lt;T&amp;gt;(T obj) {     序列过程中：使用线程不共享byte buffer pool，64K。     序列完成使用Buffer.BlockCopy拷贝到新buffer ，新的bytebuffer 直接new的，所以有内">
   
     <link rel="alternate" href="/atom.xml" title="那咋爆裂啊" type="application/atom+xml">
   
@@ -26,12 +30,16 @@
   
     <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
   
-  <link rel="stylesheet" href="/css/style.css">
-  <link rel="stylesheet" href="/plugin/bganimation/bg.css">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/plugin/bganimation/bg.css">
+
   
 
-</head>
-</html>
+<meta name="generator" content="Hexo 5.4.2"></head>
+
 <body>
   <div id="container">
     <div id="wrap">
@@ -43,9 +51,9 @@
     <h2 class="author">云却</h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>27</strong><br>文章</div></a>
-      <a href="/categories"><div><strong>16</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>49</strong><br>标签</div></a>
+      <a href="/archives"><div><strong>40</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>22</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>63</strong><br>标签</div></a>
     </div>
     <ul class="blog-link">
      
@@ -71,7 +79,7 @@
 
         <section id="main"><article id="post-MessagePack-CSharp分析" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/01/15/MessagePack-CSharp分析/" class="article-date">
+    <a href="/2018/01/15/MessagePack-CSharp%E5%88%86%E6%9E%90/" class="article-date">
   <time class="post-time" datetime="2018-01-15T15:46:55.000Z" itemprop="datePublished">
     <span class="post-month">1月</span><br/>
     <span class="post-day">15</span>
@@ -93,7 +101,7 @@
         <div>
           
   <div class="article-category">
-    <a class="article-category-link" href="/categories/程序/">程序</a>
+    <a class="article-category-link" href="/categories/%E7%A8%8B%E5%BA%8F/">程序</a>
   </div>
 
           
@@ -105,30 +113,34 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h2><p>内存分配部分：<br>    一次拷贝（开销很小，几乎没有优化必要）    一次内存分配（可以避免）</p>
+        <h2 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h2><p>内存分配部分：	<br>    一次拷贝（开销很小，几乎没有优化必要）	一次内存分配（可以避免）</p>
 <pre><code>public static byte[] Serialize&lt;T&gt;(T obj)
-{
+&#123;
     序列过程中：使用线程不共享byte buffer pool，64K。
     序列完成使用Buffer.BlockCopy拷贝到新buffer ，新的bytebuffer 直接new的，所以有内存分配。
-}
+&#125;
 
 public static ArraySegment&lt;byte&gt; SerializeUnsafe&lt;T&gt;(T obj)
-{
+&#123;
     序列过程中：使用线程不共享byte buffer pool，64K。
     序列完成使用ArraySegment&lt;byte&gt; ，没有额外的内存分配。
     但是因为使用的是线程不共享byte buffer pool，所以不能跨线程发送，而且必须立即使用，下一次序列化内容时将会覆盖数组。
     项目中基本都是异步发送，因此无法使用。
-}
-</code></pre><a id="more"></a>
-<h2 id="反序列化"><a href="#反序列化" class="headerlink" title="反序列化"></a>反序列化</h2><p>直接new对象</p>
+&#125;
+    
+</code></pre>
+<span id="more"></span>
+
+<h2 id="反序列化"><a href="#反序列化" class="headerlink" title="反序列化"></a>反序列化</h2><p>直接new对象
+        </p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://kumokyaku.github.io/2018/01/15/MessagePack-CSharp分析/" data-id="ck04vylm0000bfsvhmon56log" class="article-share-link">分享</a>
+      <a data-url="https://kumokyaku.github.io/2018/01/15/MessagePack-CSharp%E5%88%86%E6%9E%90/" data-id="cl2r3ul56000b8kvl98ai882m" class="article-share-link">分享</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DotNET/">DotNET</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/分析/">分析</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/序列化/">序列化</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/心得/">心得</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/类库/">类库</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DotNET/" rel="tag">DotNET</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%88%86%E6%9E%90/" rel="tag">分析</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BA%8F%E5%88%97%E5%8C%96/" rel="tag">序列化</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BF%83%E5%BE%97/" rel="tag">心得</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%B1%BB%E5%BA%93/" rel="tag">类库</a></li></ul>
 
     </footer>
   </div>
@@ -136,7 +148,7 @@ public static ArraySegment&lt;byte&gt; SerializeUnsafe&lt;T&gt;(T obj)
     
 <nav id="article-nav">
   
-    <a href="/2018/04/18/CustomEditor生效标准/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/04/18/CustomEditor%E7%94%9F%E6%95%88%E6%A0%87%E5%87%86/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">
         
@@ -146,9 +158,9 @@ public static ArraySegment&lt;byte&gt; SerializeUnsafe&lt;T&gt;(T obj)
     </a>
   
   
-    <a href="/2017/12/17/Unity可视化编程插件测评/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2017/12/17/Untiy%E5%A4%9APass%20Shader%E6%B8%B2%E6%9F%93%E6%B5%8B%E8%AF%95/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title">Unity可视化编程插件测评</div>
+      <div class="article-nav-title">Untiy多Pass Shader渲染测试</div>
     </a>
   
 </nav>
@@ -197,9 +209,9 @@ public static ArraySegment&lt;byte&gt; SerializeUnsafe&lt;T&gt;(T obj)
     <h2 class="author">云却</h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>27</strong><br>文章</div></a>
-      <a href="/categories"><div><strong>16</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>49</strong><br>标签</div></a>
+      <a href="/archives"><div><strong>40</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>22</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>63</strong><br>标签</div></a>
     </div>
 
 
@@ -231,9 +243,9 @@ public static ArraySegment&lt;byte&gt; SerializeUnsafe&lt;T&gt;(T obj)
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy;2018 - 2019 云却<br>
+      &copy;2021 - 2022 云却<br>
       由<a href="http://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
-      主题-<a href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a>
+      主题-<a target="_blank" rel="noopener" href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a>
       
     </div>
     
@@ -249,13 +261,21 @@ new WOW().init();
 </script>   
 
 
-  <link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
-  <script src="/plugin/fancybox/jquery.fancybox.pack.js"></script>
+  
+<link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
+
+  
+<script src="/plugin/fancybox/jquery.fancybox.pack.js"></script>
 
 
 
-  <link rel="stylesheet" href="/plugin/galmenu/GalMenu.css">
-  <script src="/plugin/galmenu/GalMenu.js"></script>
+
+  
+<link rel="stylesheet" href="/plugin/galmenu/GalMenu.css">
+
+  
+<script src="/plugin/galmenu/GalMenu.js"></script>
+
   <div class="GalMenu GalDropDown">
       <div class="circle" id="gal">
         <div class="ring">
@@ -303,7 +323,9 @@ new WOW().init();
     <li><span>趋避之</span></li> 
   </ul>
 </section>
+
 <script src="/js/script.js"></script>
+
 
 
 

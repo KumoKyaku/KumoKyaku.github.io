@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Houdini学习笔记 | 那咋爆裂啊</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="先了解[VEX]，[VDB]。然后在看跟着教程学习。  [VEX]教程(https:&#x2F;&#x2F;www.bilibili.com&#x2F;video&#x2F;av20390906&#x2F;)  [VDB]教程(https:&#x2F;&#x2F;www.bilibili.com&#x2F;video&#x2F;av50436080&#x2F;?p&#x3D;4)    都先过一遍，然后在跟着做一遍，自己瞎捅咕几下，过几天在复习一边，有奇效。    [Wrangle] [VOP] 是互相">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Houdini学习笔记">
+<meta property="og:url" content="https://kumokyaku.github.io/2019/09/23/Houdini%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="那咋爆裂啊">
+<meta property="og:description" content="先了解[VEX]，[VDB]。然后在看跟着教程学习。  [VEX]教程(https:&#x2F;&#x2F;www.bilibili.com&#x2F;video&#x2F;av20390906&#x2F;)  [VDB]教程(https:&#x2F;&#x2F;www.bilibili.com&#x2F;video&#x2F;av50436080&#x2F;?p&#x3D;4)    都先过一遍，然后在跟着做一遍，自己瞎捅咕几下，过几天在复习一边，有奇效。    [Wrangle] [VOP] 是互相">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-09-23T07:33:41.000Z">
+<meta property="article:modified_time" content="2019-01-18T15:59:55.000Z">
+<meta property="article:author" content="云却">
+<meta property="article:tag" content="心得">
+<meta property="article:tag" content="Houdini">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="那咋爆裂啊" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/plugin/bganimation/bg.css">
+
+  
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+        <div class="widget-wrap mobile-header">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://avatars0.githubusercontent.com/u/15962980?s=400&amp;u=9f44d64956034405c51c0871949db00551133265&amp;v=4">
+    <h2 class="author">云却</h2>
+    <h3 class="description"></h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>40</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>22</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>63</strong><br>标签</div></a>
+    </div>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+        <section id="main"><article id="post-Houdini学习笔记" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/09/23/Houdini%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="article-date">
+  <time class="post-time" datetime="2019-09-23T07:33:41.000Z" itemprop="datePublished">
+    <span class="post-month">9月</span><br/>
+    <span class="post-day">23</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Houdini学习笔记
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%BD%AF%E4%BB%B6%E5%AD%A6%E4%B9%A0/">软件学习</a>
+  </div>
+
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id=""><a href="#" class="headerlink" title=""></a></h1><ul>
+<li><p>先了解[VEX]，[VDB]。然后在看跟着教程学习。</p>
+<ul>
+<li>[VEX]教程(<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/av20390906/">https://www.bilibili.com/video/av20390906/</a>) </li>
+<li>[VDB]教程(<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/av50436080/?p=4">https://www.bilibili.com/video/av50436080/?p=4</a>)</li>
+</ul>
+<p>  都先过一遍，然后在跟着做一遍，自己瞎捅咕几下，过几天在复习一边，有奇效。  </p>
+<ul>
+<li>[Wrangle] [VOP] 是互相对应的两个节点，功能是一样的。[Wrangle]是代码模式， [VOP]是节点图模式。</li>
+<li>[Wrangle]代码使用的就是[VEX]。</li>
+<li>[Wrangle]可以实现几乎所有功能，所有其他节点都可以看成[Wrangle]演化出来的成品变体。</li>
+</ul>
+<ul>
+<li>了解求解器的使用。</li>
+</ul>
+</li>
+<li><p>在文档种大致看一下所有节点，不需要背，但是最好有个印象。知道哪些功能已经节点化了，免得用[Wrangle]继续造轮子。</p>
+</li>
+<li><p>节点很多，但是很多节点功能是重复的。实现一个功能的方法不只有一种。但这是个先有鸡还是先有蛋的问题，只有你学会了那个节点，你才能知道那个节点基本用不到。</p>
+</li>
+<li><p>然后就可以看各种制作教程了，遇到一个节点一定要完整看完节点文档。每个参数都试一下。</p>
+</li>
+<li><p>善用右键，能点开的选项都点开看一下。颇有开箱子的乐趣。</p>
+</li>
+<li><p>最后。学会了基础然后是学套路，套路学多了才能有思路。开始都是按着教程做都会，然后新东西做不出来。这个需要时间的积累。</p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://kumokyaku.github.io/2019/09/23/Houdini%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" data-id="cl2r3ul57000c8kvlho702h1o" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Houdini/" rel="tag">Houdini</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BF%83%E5%BE%97/" rel="tag">心得</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/12/13/git%E7%9A%84%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          git的快速入门教程
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/09/04/%E5%86%B0%E5%B7%9D%E5%9C%BA%E6%99%AF%E5%88%B6%E4%BD%9C%E8%BF%87%E7%A8%8B/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">冰川场景制作过程</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <h1 class="blog-title">那咋爆裂啊</h1>
+    <h2 class="blog-subtitle"></h2>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://avatars0.githubusercontent.com/u/15962980?s=400&amp;u=9f44d64956034405c51c0871949db00551133265&amp;v=4">
+    <h2 class="author">云却</h2>
+    <h3 class="description"></h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>40</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>22</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>63</strong><br>标签</div></a>
+    </div>
+
+
+
+    <div class="social-link">
+      
+        <a class="hvr-bounce-in" href="https://github.com/KumoKyaku" target="_blank" title="Github">
+          Github
+        </a>
+      
+    </div>
+
+    <div class="friend-link">
+      <h2>友情链接</h2>
+      
+        <a class="hvr-bounce-in" href="http://dumoedss.cc/?p=211" target="_blank" title="萌就是正义">
+          萌就是正义
+        </a>
+      
+    </div>
+  </div>
+</div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy;2021 - 2022 云却<br>
+      由<a href="http://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
+      主题-<a target="_blank" rel="noopener" href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a>
+      
+    </div>
+    
+  </div>
+</footer>
+    </div>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//apps.bdimg.com/libs/wow/0.1.6/wow.min.js"></script>
+<script>
+new WOW().init();
+</script>   
+
+
+  
+<link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
+
+  
+<script src="/plugin/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+  
+<link rel="stylesheet" href="/plugin/galmenu/GalMenu.css">
+
+  
+<script src="/plugin/galmenu/GalMenu.js"></script>
+
+  <div class="GalMenu GalDropDown">
+      <div class="circle" id="gal">
+        <div class="ring">
+          
+            <a href="/" title="" class="menuItem">首页</a>
+          
+            <a href="/tags" title="" class="menuItem">标签</a>
+          
+            <a href="/categories" title="" class="menuItem">分类</a>
+          
+            <a href="/archives" title="" class="menuItem">归档</a>
+          
+            <a href="/xxxxxxxxx" title="" class="menuItem">xxx</a>
+          
+            <a href="/xxxxxxx" title="" class="menuItem">xxxx</a>
+          
+        </div>
+        
+          <audio id="audio" src="#"></audio>
+        
+      </div> 
+</div>
+<div id="overlay" style="opacity: 1; cursor: pointer;"></div>
+  <script type="text/javascript">var items = document.querySelectorAll('.menuItem');
+    for (var i = 0,
+    l = items.length; i < l; i++) {
+      items[i].style.left = (50 - 35 * Math.cos( - 0.5 * Math.PI - 2 * (1 / l) * i * Math.PI)).toFixed(4) + "%";
+      items[i].style.top = (50 + 35 * Math.sin( - 0.5 * Math.PI - 2 * (1 / l) * i * Math.PI)).toFixed(4) + "%"
+    }</script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('body').GalMenu({
+      'menu': 'GalDropDown'
+    })
+  });
+</script>
+
+  <section class="hidden-xs"> 
+  <ul class="cb-slideshow"> 
+    <li><span>苟利</span></li> 
+    <li><span>国家</span></li> 
+    <li><span>生死以</span></li> 
+    <li><span>岂能</span></li> 
+    <li><span>祸福</span></li> 
+    <li><span>趋避之</span></li> 
+  </ul>
+</section>
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
