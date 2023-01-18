@@ -15,10 +15,10 @@ git作为当下最先进的版本管理工具，非常值得学习使用。
 git是版本管理工具，类比于SVN。git-lfs 是git用于处理体积较大文件的一个插件。
 
 # git的安装
-1. 首先去官网(https://git-scm.com/downloads)下载git最新版本。  
+1. 首先去官网[https://git-scm.com/downloads](https://git-scm.com/downloads)下载git最新版本。  
 ![gitdownload](git的快速入门教程/gitdownload.png)
 
-2. 然后去git-lfs官网下载lfs(https://git-lfs.github.com/)。  
+2. 然后去git-lfs官网[https://git-lfs.github.com](https://git-lfs.github.com/)下载lfs。  
 ![git-lfsdownload](git的快速入门教程/git-lfsdownload.png)
 
 <!-- more -->
