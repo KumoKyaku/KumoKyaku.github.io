@@ -391,27 +391,36 @@
 <h2 id="事务句柄-x2F-事务锁-x2F-ET6-0协程锁"><a href="#事务句柄-x2F-事务锁-x2F-ET6-0协程锁" class="headerlink" title="事务句柄&#x2F;事务锁&#x2F;ET6.0协程锁"></a>事务句柄&#x2F;事务锁&#x2F;ET6.0协程锁</h2><p>对于任何需要<code>异步执行/分段/防重入/互斥</code>的事务,应该采用先获取句柄在执行的设计，句柄在（多段）执行过程中传递，在执行结束后复位。句柄可以设计成泛型的，保存事务中间信息，尽量每次使用新句柄，而不是复用句柄，防止脏数据。</p>
 <h2 id="对象池"><a href="#对象池" class="headerlink" title="对象池"></a>对象池</h2><p>要有全局任务控制。<br>对于各个功能，使用的频率决定相关功能对象池的权重，以此决定对象池长期保持对象的数量。<br>把需要加载的东西加入任务队列。控制好内存和帧率的平衡。<br>良好的设计应该是游戏应该知道什么时间段是性能占用低的时间。<br>比如打开全屏UI，通常性能非常充足。这个时候全局如果认为内存可用。就会分帧实例化对象池的对象。</p>
 <h2 id="值类型在哪里分配内存"><a href="#值类型在哪里分配内存" class="headerlink" title="值类型在哪里分配内存"></a>值类型在哪里分配内存</h2><p>取决于声明位置,声明在方法内部,就在栈上. 声明在类的字段上,就在堆上.</p>
-<h2 id="编程境界"><a href="#编程境界" class="headerlink" title="编程境界"></a><code>编程境界</code></h2><p><code>三个核心技巧</code>,理解每种技巧都是编程路上的分水岭.</p>
-<ul>
+<h2 id="编程三个核心技巧-理解每种技巧都是编程路上的分水岭"><a href="#编程三个核心技巧-理解每种技巧都是编程路上的分水岭" class="headerlink" title="编程三个核心技巧,理解每种技巧都是编程路上的分水岭."></a><code>编程三个核心技巧</code>,理解每种技巧都是编程路上的分水岭.</h2><ul>
 <li>回调函数-&gt;委托事件</li>
 <li>泛型</li>
 <li>多线程-&gt;异步</li>
 </ul>
-<ol>
+<h2 id="编程境界"><a href="#编程境界" class="headerlink" title="编程境界"></a><code>编程境界</code></h2><ol>
 <li>世间万物皆对象</li>
 <li>世间万物皆数据<br>  解释：分得清什么是数据什么是逻辑，知道数据和逻辑可以互相转化，进而复用。<br>  例子：各种配置表。</li>
-<li>标准化<br>  解释：任何事物都需要不停的迭代发展。标准化是快速迭代的必要条件。  </li>
-<li>还没有悟出来……</li>
-</ol>
+<li>标准化<br>  解释：任何事物都需要不停的迭代发展。标准化是快速迭代的必要条件。 </li>
+<li><a target="_blank" rel="noopener" href="https://ferd.ca/complexity-has-to-live-somewhere.html">复杂度不会消失，只会转移。</a><code>同时也意味着可以转移</code>。<ul>
+<li>标准化是一个明确的边界，将复杂度分离到各个子模块中。  </li>
+<li>需求的最小复杂度是存在的，实现的复杂度总是大于最小复杂度。错误的设计会增加不必要的复杂度。</li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/138145081">消灭重复</a>与不必要复杂度的引入，比如Util函数中的十多个传参。</li>
+</ul>
+</li>
+<li>数据是存在，逻辑是变化。  <blockquote>
+<p>以前以为发明二进制的人很牛逼，用0和1就能表达整个世界，洞悉了世界的本质。但其实不是的，二进制也好，十进制也好，只是表达方式的不同。计算机使用二级制，是因为物理材料容易实现，如果材料合适，使用三进制，十进制都是可以的。<br> <code>数据与逻辑不因表达方式不同而改变。</code>花言巧语不能改变事物本质。<br> 数据与逻辑才是万物的基石，二进制不是。  </p>
+</blockquote>
 <blockquote>
 <p>程序的本质就是数据和逻辑。要写出更通用和准确的逻辑，就需要更高级的数据描述方式。interface和class具有局限性。</p>
 </blockquote>
+</li>
+<li>还没有悟出来……</li>
+</ol>
 <h1 id="工具链"><a href="#工具链" class="headerlink" title="工具链"></a>工具链</h1><p>经验法则： 美术素材只能用工具生成中间素材，不能生成最终素材，因为对于最终素材90%的情况需要手动调整，挂载脚本。一旦由工具重新生成，手动调整部分会丢失，如果工具要保留手动调整部分，要做大量工作。</p>
 <h1 id="unity客户端可以开启HTTP监听，然后远程发送调试指令，也可以嵌入到控制台"><a href="#unity客户端可以开启HTTP监听，然后远程发送调试指令，也可以嵌入到控制台" class="headerlink" title="unity客户端可以开启HTTP监听，然后远程发送调试指令，也可以嵌入到控制台"></a>unity客户端可以开启HTTP监听，然后远程发送调试指令，也可以嵌入到控制台</h1><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">StartHttpDebug</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    HttpListener listener = <span class="keyword">new</span> HttpListener();</span><br><span class="line">    Debug.Log(<span class="string">$&quot;开启HTTP66666 Debug监听  IsSupported:<span class="subst">&#123;HttpListener.IsSupported&#125;</span>&quot;</span>);</span><br><span class="line">    listener.AuthenticationSchemes = AuthenticationSchemes.Anonymous;<span class="comment">//指定身份验证 Anonymous匿名访问</span></span><br><span class="line">    listener.Prefixes.Add(<span class="string">&quot;http://+:66666/&quot;</span>);</span><br><span class="line">    listener.Start();</span><br><span class="line">    StartRecvAsync(listener);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">async</span> <span class="keyword">void</span> <span class="title">StartRecvAsync</span>(<span class="params">HttpListener listener</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">var</span> context = <span class="keyword">await</span> listener.GetContextAsync();</span><br><span class="line">    StartRecvAsync(listener);</span><br><span class="line">    <span class="built_in">string</span> rawUrl = context.Request.RawUrl;</span><br><span class="line">    <span class="keyword">if</span> (rawUrl == <span class="string">&quot;/favicon.ico&quot;</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        rawUrl = rawUrl.Substring(<span class="number">1</span>, rawUrl.Length - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    Excute(rawUrl);</span><br><span class="line">    <span class="comment">//使用Writer输出http响应代码,UTF8格式</span></span><br><span class="line">    <span class="keyword">using</span> (StreamWriter writer = <span class="keyword">new</span> StreamWriter(context.Response.OutputStream, Encoding.UTF8))</span><br><span class="line">    &#123;</span><br><span class="line">        writer.Write(<span class="string">&quot;&lt;HTML&gt;&lt;BODY&gt; 收到指令 &lt;/BODY&gt;&lt;/HTML&gt;&quot;</span>);</span><br><span class="line">        writer.Close();</span><br><span class="line">        context.Response.Close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://kumokyaku.github.io/2018/11/29/%E5%BC%80%E5%8F%91%E5%BF%83%E5%BE%97/" data-id="cl2r42okz001p9ovlgxsmagxk" class="article-share-link">分享</a>
+      <a data-url="https://kumokyaku.github.io/2018/11/29/%E5%BC%80%E5%8F%91%E5%BF%83%E5%BE%97/" data-id="cld13jtfs001pmkvlhfz05cwb" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BF%83%E5%BE%97/" rel="tag">心得</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B8%B8%E6%88%8F/" rel="tag">游戏</a></li></ul>
@@ -517,7 +526,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy;2021 - 2022 云却<br>
+      &copy;2022 - 2023 云却<br>
       由<a href="http://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
       主题-<a target="_blank" rel="noopener" href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a>
       
