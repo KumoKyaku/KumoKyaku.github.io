@@ -39,7 +39,33 @@ GraphView自身从VisualElement继承。
 使用内存ScriptObject实现，参考GraphViewUndoRedoSelection，注意hideFlags = HideFlags.HideAndDontSave。  
 否则内存中的ScriptObject对象改动，会让Scene变成dirty状态。
 
+## ContextualMenu
 
+- 由合成的ContextualMenuPopulateEvent事件触发
+- 触发在GraphView的上下文菜单
+  - 注册ContextualMenuPopulateEvent回调 OnContextualMenu(ContextualMenuPopulateEvent evt)
+  - MouseUpEvent/KeyUpEvent -> GraphView.ExecuteDefaultActionAtTarget -> EditorPanel.EditorContextualMenuManager.DisplayMenuIfEventMatches -> 合成事件ContextualMenuPopulateEvent -> 发送事件到GraphView。
+  - 触发ContextualMenuPopulateEvent回调OnContextualMenu(ContextualMenuPopulateEvent evt) -> BuildContextualMenu
+- 触发在Node的上下文菜单
+  - Node添加ContextualMenuManipulator，内部注册MouseUpEvent/KeyUpEvent/ContextualMenuPopulateEvent。
+  - MouseUpEvent/KeyUpEvent 调用 EditorPanel.EditorContextualMenuManager.DisplayMenu， 并停止事件传播。  
+    并且防止其默认行为PreventDefault，因此GraphView.ExecuteDefaultActionAtTarget不会再被调用。
+  - ContextualMenuManager.DisplayMenu 合成 ContextualMenuPopulateEvent，发送事件到Node。
+  - Node的ContextualMenuManipulator的ContextualMenuPopulateEvent回调m_MenuBuilder被触发，执行Node.BuildContextualMenu。
+  - ContextualMenuPopulateEvent事件继续冒泡，触发GraphView的ContextualMenuPopulateEvent回调 OnContextualMenu(ContextualMenuPopulateEvent evt)。
+
+总结：
+
+- 触发显示菜单时，由子到父，依次调用每个对象仅一次BuildContextualMenu。
+- 自定义控件添加ContextualMenu，使用ContextualMenuManipulator即可。
+- GraphView的BuildContextualMenu默认实现，仅对GraphView，Node，Group这个三个类型添加了菜单项，所以自定义控件ContextualMenu触发GraphView的BuildContextualMenu时，会什么都不发生。
+- 你可以重写GraphView的BuildContextualMenu函数并根据evt.targe添加自己的菜单项。
+- evt.targe是ContextualMenuManager.DisplayMenu发送事件的目标对象，也就是添加ContextualMenuManipulator的对象或者GraphView本身。
+
+## DOM事件流
+
+- 架构中事件按照既定流程处理事件[Unity - Manual: Handle events](https://docs.unity.cn/Documentation/Manual/UIE-Events-Handling.html)
+- 在用户代码中，处理完自己的逻辑后，停止事件传播和防止其默认行为是常态，用于防止多个层级的回调函数同时被触发。
 
 ## 感想
 
