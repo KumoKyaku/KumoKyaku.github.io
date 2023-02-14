@@ -42,7 +42,7 @@
     <h2 class="author">云却</h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>40</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>42</strong><br>文章</div></a>
       <a href="/categories"><div><strong>22</strong><br>分类</div></a>
       <a href="/tags"><div><strong>63</strong><br>标签</div></a>
     </div>
@@ -69,6 +69,127 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-UIElement使用笔记" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2023/02/14/UIElement%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/" class="article-date">
+  <time class="post-time" datetime="2023-02-14T04:54:43.000Z" itemprop="datePublished">
+    <span class="post-month">2月</span><br/>
+    <span class="post-day">14</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/02/14/UIElement%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/">UIElement使用笔记</a>
+    </h1>
+  
+
+        <div>
+          
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="GraphView"><a href="#GraphView" class="headerlink" title="GraphView"></a>GraphView</h1><p>GraphView中的所有元素，都从GraphElement继承。GraphElement实现了很多默认功能。如果要自定义在GraphView中使用的控件，建议直接从GraphElement继承。<br>GraphView自身从VisualElement继承。</p>
+<p>建议：在你使用GraphView之前，一定要先学习DOM事件流。1个小时的扫盲学习会在后面为你节省至少10个小时的时间。</p>
+<h2 id="GraphElement-选中"><a href="#GraphElement-选中" class="headerlink" title="GraphElement 选中"></a>GraphElement 选中</h2><p>通常OnSelected被执行2次。</p>
+<p><img src="/2023/02/14/UIElement%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/image-20230214130532222.png" alt="image-20230214130532222"></p>
+<ul>
+<li>第一次由GraphElement的ClickSelector m_ClickSelector 执行。在GraphElement的Capabilities capabilities含有Capabilities.Selectable枚举项时添加ClickSelector 。<ul>
+<li>使用MouseDownEvent。注册在DOM事件流的冒泡阶段。</li>
+<li>ClickSelector 额外检测了是否有子GraphElement元素也被被命中,参加ClickSelector.WasSelectableDescendantHitByMouse。如果含有可选择的子，那么当前元素不会执行被选择逻辑。也就是说，整个树中每次只能有一个GraphElement被选择。</li>
+</ul>
+</li>
+<li>第二次由RectangleSelector 执行。通常添加在GraphView中。<ul>
+<li>使用MouseUpEvent。注册在DOM事件流的冒泡阶段。</li>
+<li>会收集矩形区域内所有可选择的GraphElement。然后依次执行AddToSelectionNoUndoRecord。顺序由GraphView中hierarchy控制，可以简单理解为从父到子。</li>
+<li>RectangleSelector 表现为可以框选，也可以点选。点选时本质是矩形区域非常小。所以点选是会同时选中父元素可子元素。</li>
+</ul>
+</li>
+</ul>
+<h2 id="GraphElement-拖拽"><a href="#GraphElement-拖拽" class="headerlink" title="GraphElement 拖拽"></a>GraphElement 拖拽</h2><p>由SelectionDragger实现，通常注册到GraphView中。</p>
+<ul>
+<li>使用MouseDownEvent，MouseMoveEvent，MouseUpEvent，KeyDownEvent，MouseCaptureOutEvent。注册在DOM事件流的冒泡阶段。</li>
+<li>GraphElement 能否被拖拽由Capabilities.Movable枚举项控制。也就是说，GraphElement 仅设置自己能否被拖拽，实际拖拽控制，事件触发在GraphView这一个层级中。</li>
+<li>假如的GraphElement 内部也需要执行拖拽逻辑，如ListView重排序。那么需要在ListView层级，注册MouseDownEvent，MouseMoveEvent，MouseUpEvent冒泡阶段，并阻止事件冒泡，向父级传播。否则会和GraphView中的拖拽逻辑互相干扰，表现不正确。<br>  <img src="/2023/02/14/UIElement%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/image-20230214134032599.png" alt="image-20230214134032599"></li>
+</ul>
+<h2 id="Undo-x2F-Redo"><a href="#Undo-x2F-Redo" class="headerlink" title="Undo&#x2F;Redo"></a>Undo&#x2F;Redo</h2><p>使用内存ScriptObject实现，参考GraphViewUndoRedoSelection，注意hideFlags &#x3D; HideFlags.HideAndDontSave。<br>否则内存中的ScriptObject对象改动，会让Scene变成dirty状态。</p>
+<h2 id="感想"><a href="#感想" class="headerlink" title="感想"></a>感想</h2><p>通过对GraphView的学习和使用，又一次深刻认识到。软件编程中没有魔术，任何行为后面都有它对应的代码。<br>阅读GraphView的源码对使用GraphView很有帮助。阅读源码是痛苦的，但仍比边猜边用要好得多。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://kumokyaku.github.io/2023/02/14/UIElement%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/" data-id="cle3u08v500006ovl3wgz8ax2" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-关于CSharp的一些细节问题" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2023/02/12/%E5%85%B3%E4%BA%8ECSharp%E7%9A%84%E4%B8%80%E4%BA%9B%E7%BB%86%E8%8A%82%E9%97%AE%E9%A2%98/" class="article-date">
+  <time class="post-time" datetime="2023-02-12T05:33:09.000Z" itemprop="datePublished">
+    <span class="post-month">2月</span><br/>
+    <span class="post-day">12</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/02/12/%E5%85%B3%E4%BA%8ECSharp%E7%9A%84%E4%B8%80%E4%BA%9B%E7%BB%86%E8%8A%82%E9%97%AE%E9%A2%98/">关于C#的一些细节问题</a>
+    </h1>
+  
+
+        <div>
+          
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="C-闭包会被优化为struct吗？"><a href="#C-闭包会被优化为struct吗？" class="headerlink" title="C# 闭包会被优化为struct吗？"></a>C# 闭包会被优化为struct吗？</h2><h2 id="ValueTask为什么会比Task性能更高？"><a href="#ValueTask为什么会比Task性能更高？" class="headerlink" title="ValueTask为什么会比Task性能更高？"></a>ValueTask为什么会比Task性能更高？</h2><h2 id="网络模块的性能开销有哪些？"><a href="#网络模块的性能开销有哪些？" class="headerlink" title="网络模块的性能开销有哪些？"></a>网络模块的性能开销有哪些？</h2>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://kumokyaku.github.io/2023/02/12/%E5%85%B3%E4%BA%8ECSharp%E7%9A%84%E4%B8%80%E4%BA%9B%E7%BB%86%E8%8A%82%E9%97%AE%E9%A2%98/" data-id="cle3u08v700016ovl66d7bpty" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
   
     <article id="post-字典Key性能测试" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -696,130 +817,10 @@
 
 
   
-    <article id="post-SourceTree-git-lfs无法识别大于10mb文件解决方法" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/12/16/SourceTree-git-lfs%E6%97%A0%E6%B3%95%E8%AF%86%E5%88%AB%E5%A4%A7%E4%BA%8E10mb%E6%96%87%E4%BB%B6%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/" class="article-date">
-  <time class="post-time" datetime="2019-12-16T14:46:37.000Z" itemprop="datePublished">
-    <span class="post-month">12月</span><br/>
-    <span class="post-day">16</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/16/SourceTree-git-lfs%E6%97%A0%E6%B3%95%E8%AF%86%E5%88%AB%E5%A4%A7%E4%BA%8E10mb%E6%96%87%E4%BB%B6%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/">SourceTree-git-lfs无法识别大于10mb文件解决方法</a>
-    </h1>
-  
-
-        <div>
-          
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E8%BD%AF%E4%BB%B6%E5%AD%A6%E4%B9%A0/">软件学习</a>
-  </div>
-
-          
-              
-
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>SourceTree 使用lfs时，单个文件大于10mb时会导致无法追踪。虽然使用git lfs 查看会显示为以追踪，但是会推送失败。<br><img src="/2019/12/16/SourceTree-git-lfs%E6%97%A0%E6%B3%95%E8%AF%86%E5%88%AB%E5%A4%A7%E4%BA%8E10mb%E6%96%87%E4%BB%B6%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/SourceTree-git-lfs%E6%97%A0%E6%B3%95%E8%AF%86%E5%88%AB%E5%A4%A7%E4%BA%8E10mb%E6%96%87%E4%BB%B6%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%5Cimage-20191216224852819.png" alt="image-20191216224852819"></p>
-<p>解决方法：  </p>
-        
-          <p class="article-more-link">
-            <a href="/2019/12/16/SourceTree-git-lfs%E6%97%A0%E6%B3%95%E8%AF%86%E5%88%AB%E5%A4%A7%E4%BA%8E10mb%E6%96%87%E4%BB%B6%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://kumokyaku.github.io/2019/12/16/SourceTree-git-lfs%E6%97%A0%E6%B3%95%E8%AF%86%E5%88%AB%E5%A4%A7%E4%BA%8E10mb%E6%96%87%E4%BB%B6%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/" data-id="cld13jtfi000hmkvleajc3tk0" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Unity/" rel="tag">Unity</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/" rel="tag">游戏开发</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%A8%8B%E5%BA%8F/" rel="tag">程序</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91/" rel="tag">软件开发</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-  
-    <article id="post-数据模型的直接数据与间接数据" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/12/14/%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B%E7%9A%84%E7%9B%B4%E6%8E%A5%E6%95%B0%E6%8D%AE%E4%B8%8E%E9%97%B4%E6%8E%A5%E6%95%B0%E6%8D%AE/" class="article-date">
-  <time class="post-time" datetime="2019-12-13T16:01:40.000Z" itemprop="datePublished">
-    <span class="post-month">12月</span><br/>
-    <span class="post-day">14</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/14/%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B%E7%9A%84%E7%9B%B4%E6%8E%A5%E6%95%B0%E6%8D%AE%E4%B8%8E%E9%97%B4%E6%8E%A5%E6%95%B0%E6%8D%AE/">数据模型的直接数据与间接数据</a>
-    </h1>
-  
-
-        <div>
-          
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/">架构设计</a>
-  </div>
-
-          
-              
-
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>一个苹果，三个属性，颜色，味道，是否是高档的。</p>
-<p>如果认为红色且甜的是高档苹果，那么。颜色和味道是直接数据。是否高档为间接数据。</p>
-        
-          <p class="article-more-link">
-            <a href="/2019/12/14/%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B%E7%9A%84%E7%9B%B4%E6%8E%A5%E6%95%B0%E6%8D%AE%E4%B8%8E%E9%97%B4%E6%8E%A5%E6%95%B0%E6%8D%AE/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://kumokyaku.github.io/2019/12/14/%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B%E7%9A%84%E7%9B%B4%E6%8E%A5%E6%95%B0%E6%8D%AE%E4%B8%8E%E9%97%B4%E6%8E%A5%E6%95%B0%E6%8D%AE/" data-id="cld13jtfu001zmkvl5jh48cpk" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Unity/" rel="tag">Unity</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%A8%8B%E5%BA%8F/" rel="tag">程序</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-  
 
 
   <nav id="page-nav">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">next &amp;raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">next &amp;raquo;</a>
   </nav>
 </section>
         
@@ -860,7 +861,7 @@
     <h2 class="author">云却</h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>40</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>42</strong><br>文章</div></a>
       <a href="/categories"><div><strong>22</strong><br>分类</div></a>
       <a href="/tags"><div><strong>63</strong><br>标签</div></a>
     </div>

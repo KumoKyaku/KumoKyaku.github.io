@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>UIElement使用笔记 | 那咋爆裂啊</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="GraphViewGraphView中的所有元素，都从GraphElement继承。GraphElement实现了很多默认功能。如果要自定义在GraphView中使用的控件，建议直接从GraphElement继承。GraphView自身从VisualElement继承。 建议：在你使用GraphView之前，一定要先学习DOM事件流。1个小时的扫盲学习会在后面为你节省至少10个小时的时间。 Gra">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UIElement使用笔记">
+<meta property="og:url" content="https://kumokyaku.github.io/2023/02/14/UIElement%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="那咋爆裂啊">
+<meta property="og:description" content="GraphViewGraphView中的所有元素，都从GraphElement继承。GraphElement实现了很多默认功能。如果要自定义在GraphView中使用的控件，建议直接从GraphElement继承。GraphView自身从VisualElement继承。 建议：在你使用GraphView之前，一定要先学习DOM事件流。1个小时的扫盲学习会在后面为你节省至少10个小时的时间。 Gra">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://kumokyaku.github.io/2023/02/14/UIElement%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/image-20230214130532222.png">
+<meta property="og:image" content="https://kumokyaku.github.io/2023/02/14/UIElement%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/image-20230214134032599.png">
+<meta property="article:published_time" content="2023-02-14T04:54:43.000Z">
+<meta property="article:modified_time" content="2023-02-14T05:53:42.548Z">
+<meta property="article:author" content="云却">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://kumokyaku.github.io/2023/02/14/UIElement%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/image-20230214130532222.png">
+  
+    <link rel="alternate" href="/atom.xml" title="那咋爆裂啊" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/plugin/bganimation/bg.css">
+
+  
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+        <div class="widget-wrap mobile-header">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://avatars0.githubusercontent.com/u/15962980?s=400&amp;u=9f44d64956034405c51c0871949db00551133265&amp;v=4">
+    <h2 class="author">云却</h2>
+    <h3 class="description"></h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>42</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>22</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>63</strong><br>标签</div></a>
+    </div>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+        <section id="main"><article id="post-UIElement使用笔记" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2023/02/14/UIElement%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/" class="article-date">
+  <time class="post-time" datetime="2023-02-14T04:54:43.000Z" itemprop="datePublished">
+    <span class="post-month">2月</span><br/>
+    <span class="post-day">14</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      UIElement使用笔记
+    </h1>
+  
+
+        <div>
+          
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="GraphView"><a href="#GraphView" class="headerlink" title="GraphView"></a>GraphView</h1><p>GraphView中的所有元素，都从GraphElement继承。GraphElement实现了很多默认功能。如果要自定义在GraphView中使用的控件，建议直接从GraphElement继承。<br>GraphView自身从VisualElement继承。</p>
+<p>建议：在你使用GraphView之前，一定要先学习DOM事件流。1个小时的扫盲学习会在后面为你节省至少10个小时的时间。</p>
+<h2 id="GraphElement-选中"><a href="#GraphElement-选中" class="headerlink" title="GraphElement 选中"></a>GraphElement 选中</h2><p>通常OnSelected被执行2次。</p>
+<p><img src="/2023/02/14/UIElement%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/image-20230214130532222.png" alt="image-20230214130532222"></p>
+<ul>
+<li>第一次由GraphElement的ClickSelector m_ClickSelector 执行。在GraphElement的Capabilities capabilities含有Capabilities.Selectable枚举项时添加ClickSelector 。<ul>
+<li>使用MouseDownEvent。注册在DOM事件流的冒泡阶段。</li>
+<li>ClickSelector 额外检测了是否有子GraphElement元素也被被命中,参加ClickSelector.WasSelectableDescendantHitByMouse。如果含有可选择的子，那么当前元素不会执行被选择逻辑。也就是说，整个树中每次只能有一个GraphElement被选择。</li>
+</ul>
+</li>
+<li>第二次由RectangleSelector 执行。通常添加在GraphView中。<ul>
+<li>使用MouseUpEvent。注册在DOM事件流的冒泡阶段。</li>
+<li>会收集矩形区域内所有可选择的GraphElement。然后依次执行AddToSelectionNoUndoRecord。顺序由GraphView中hierarchy控制，可以简单理解为从父到子。</li>
+<li>RectangleSelector 表现为可以框选，也可以点选。点选时本质是矩形区域非常小。所以点选是会同时选中父元素可子元素。</li>
+</ul>
+</li>
+</ul>
+<h2 id="GraphElement-拖拽"><a href="#GraphElement-拖拽" class="headerlink" title="GraphElement 拖拽"></a>GraphElement 拖拽</h2><p>由SelectionDragger实现，通常注册到GraphView中。</p>
+<ul>
+<li>使用MouseDownEvent，MouseMoveEvent，MouseUpEvent，KeyDownEvent，MouseCaptureOutEvent。注册在DOM事件流的冒泡阶段。</li>
+<li>GraphElement 能否被拖拽由Capabilities.Movable枚举项控制。也就是说，GraphElement 仅设置自己能否被拖拽，实际拖拽控制，事件触发在GraphView这一个层级中。</li>
+<li>假如的GraphElement 内部也需要执行拖拽逻辑，如ListView重排序。那么需要在ListView层级，注册MouseDownEvent，MouseMoveEvent，MouseUpEvent冒泡阶段，并阻止事件冒泡，向父级传播。否则会和GraphView中的拖拽逻辑互相干扰，表现不正确。<br>  <img src="/2023/02/14/UIElement%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/image-20230214134032599.png" alt="image-20230214134032599"></li>
+</ul>
+<h2 id="Undo-x2F-Redo"><a href="#Undo-x2F-Redo" class="headerlink" title="Undo&#x2F;Redo"></a>Undo&#x2F;Redo</h2><p>使用内存ScriptObject实现，参考GraphViewUndoRedoSelection，注意hideFlags &#x3D; HideFlags.HideAndDontSave。<br>否则内存中的ScriptObject对象改动，会让Scene变成dirty状态。</p>
+<h2 id="感想"><a href="#感想" class="headerlink" title="感想"></a>感想</h2><p>通过对GraphView的学习和使用，又一次深刻认识到。软件编程中没有魔术，任何行为后面都有它对应的代码。<br>阅读GraphView的源码对使用GraphView很有帮助。阅读源码是痛苦的，但仍比边猜边用要好得多。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://kumokyaku.github.io/2023/02/14/UIElement%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/" data-id="cle3u08v500006ovl3wgz8ax2" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2023/02/12/%E5%85%B3%E4%BA%8ECSharp%E7%9A%84%E4%B8%80%E4%BA%9B%E7%BB%86%E8%8A%82%E9%97%AE%E9%A2%98/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">关于C#的一些细节问题</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <h1 class="blog-title">那咋爆裂啊</h1>
+    <h2 class="blog-subtitle"></h2>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://avatars0.githubusercontent.com/u/15962980?s=400&amp;u=9f44d64956034405c51c0871949db00551133265&amp;v=4">
+    <h2 class="author">云却</h2>
+    <h3 class="description"></h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>42</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>22</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>63</strong><br>标签</div></a>
+    </div>
+
+
+
+    <div class="social-link">
+      
+        <a class="hvr-bounce-in" href="https://github.com/KumoKyaku" target="_blank" title="Github">
+          Github
+        </a>
+      
+    </div>
+
+    <div class="friend-link">
+      <h2>友情链接</h2>
+      
+        <a class="hvr-bounce-in" href="http://dumoedss.cc/?p=211" target="_blank" title="萌就是正义">
+          萌就是正义
+        </a>
+      
+    </div>
+  </div>
+</div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy;2022 - 2023 云却<br>
+      由<a href="http://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
+      主题-<a target="_blank" rel="noopener" href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a>
+      
+    </div>
+    
+  </div>
+</footer>
+    </div>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//apps.bdimg.com/libs/wow/0.1.6/wow.min.js"></script>
+<script>
+new WOW().init();
+</script>   
+
+
+  
+<link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
+
+  
+<script src="/plugin/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+  
+<link rel="stylesheet" href="/plugin/galmenu/GalMenu.css">
+
+  
+<script src="/plugin/galmenu/GalMenu.js"></script>
+
+  <div class="GalMenu GalDropDown">
+      <div class="circle" id="gal">
+        <div class="ring">
+          
+            <a href="/" title="" class="menuItem">首页</a>
+          
+            <a href="/tags" title="" class="menuItem">标签</a>
+          
+            <a href="/categories" title="" class="menuItem">分类</a>
+          
+            <a href="/archives" title="" class="menuItem">归档</a>
+          
+            <a href="/xxxxxxxxx" title="" class="menuItem">xxx</a>
+          
+            <a href="/xxxxxxx" title="" class="menuItem">xxxx</a>
+          
+        </div>
+        
+          <audio id="audio" src="#"></audio>
+        
+      </div> 
+</div>
+<div id="overlay" style="opacity: 1; cursor: pointer;"></div>
+  <script type="text/javascript">var items = document.querySelectorAll('.menuItem');
+    for (var i = 0,
+    l = items.length; i < l; i++) {
+      items[i].style.left = (50 - 35 * Math.cos( - 0.5 * Math.PI - 2 * (1 / l) * i * Math.PI)).toFixed(4) + "%";
+      items[i].style.top = (50 + 35 * Math.sin( - 0.5 * Math.PI - 2 * (1 / l) * i * Math.PI)).toFixed(4) + "%"
+    }</script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('body').GalMenu({
+      'menu': 'GalDropDown'
+    })
+  });
+</script>
+
+  <section class="hidden-xs"> 
+  <ul class="cb-slideshow"> 
+    <li><span>苟利</span></li> 
+    <li><span>国家</span></li> 
+    <li><span>生死以</span></li> 
+    <li><span>岂能</span></li> 
+    <li><span>祸福</span></li> 
+    <li><span>趋避之</span></li> 
+  </ul>
+</section>
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
