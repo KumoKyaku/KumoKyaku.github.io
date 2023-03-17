@@ -15,7 +15,7 @@
 <meta property="og:image" content="https://kumokyaku.github.io/2023/02/14/UIElement%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/image-20230214130532222.png">
 <meta property="og:image" content="https://kumokyaku.github.io/2023/02/14/UIElement%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/image-20230214134032599.png">
 <meta property="article:published_time" content="2023-02-14T04:54:43.000Z">
-<meta property="article:modified_time" content="2023-02-14T05:53:42.548Z">
+<meta property="article:modified_time" content="2023-02-14T07:55:56.946Z">
 <meta property="article:author" content="云却">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://kumokyaku.github.io/2023/02/14/UIElement%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/image-20230214130532222.png">
@@ -49,7 +49,7 @@
     <h2 class="author">云却</h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>42</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>44</strong><br>文章</div></a>
       <a href="/categories"><div><strong>22</strong><br>分类</div></a>
       <a href="/tags"><div><strong>63</strong><br>标签</div></a>
     </div>
@@ -131,12 +131,41 @@
 <li>假如的GraphElement 内部也需要执行拖拽逻辑，如ListView重排序。那么需要在ListView层级，注册MouseDownEvent，MouseMoveEvent，MouseUpEvent冒泡阶段，并阻止事件冒泡，向父级传播。否则会和GraphView中的拖拽逻辑互相干扰，表现不正确。<br>  <img src="/2023/02/14/UIElement%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/image-20230214134032599.png" alt="image-20230214134032599"></li>
 </ul>
 <h2 id="Undo-x2F-Redo"><a href="#Undo-x2F-Redo" class="headerlink" title="Undo&#x2F;Redo"></a>Undo&#x2F;Redo</h2><p>使用内存ScriptObject实现，参考GraphViewUndoRedoSelection，注意hideFlags &#x3D; HideFlags.HideAndDontSave。<br>否则内存中的ScriptObject对象改动，会让Scene变成dirty状态。</p>
+<h2 id="ContextualMenu"><a href="#ContextualMenu" class="headerlink" title="ContextualMenu"></a>ContextualMenu</h2><ul>
+<li>由合成的ContextualMenuPopulateEvent事件触发</li>
+<li>触发在GraphView的上下文菜单<ul>
+<li>注册ContextualMenuPopulateEvent回调 OnContextualMenu(ContextualMenuPopulateEvent evt)</li>
+<li>MouseUpEvent&#x2F;KeyUpEvent -&gt; GraphView.ExecuteDefaultActionAtTarget -&gt; EditorPanel.EditorContextualMenuManager.DisplayMenuIfEventMatches -&gt; 合成事件ContextualMenuPopulateEvent -&gt; 发送事件到GraphView。</li>
+<li>触发ContextualMenuPopulateEvent回调OnContextualMenu(ContextualMenuPopulateEvent evt) -&gt; BuildContextualMenu</li>
+</ul>
+</li>
+<li>触发在Node的上下文菜单<ul>
+<li>Node添加ContextualMenuManipulator，内部注册MouseUpEvent&#x2F;KeyUpEvent&#x2F;ContextualMenuPopulateEvent。</li>
+<li>MouseUpEvent&#x2F;KeyUpEvent 调用 EditorPanel.EditorContextualMenuManager.DisplayMenu， 并停止事件传播。<br>并且防止其默认行为PreventDefault，因此GraphView.ExecuteDefaultActionAtTarget不会再被调用。</li>
+<li>ContextualMenuManager.DisplayMenu 合成 ContextualMenuPopulateEvent，发送事件到Node。</li>
+<li>Node的ContextualMenuManipulator的ContextualMenuPopulateEvent回调m_MenuBuilder被触发，执行Node.BuildContextualMenu。</li>
+<li>ContextualMenuPopulateEvent事件继续冒泡，触发GraphView的ContextualMenuPopulateEvent回调 OnContextualMenu(ContextualMenuPopulateEvent evt)。</li>
+</ul>
+</li>
+</ul>
+<p>总结：</p>
+<ul>
+<li>触发显示菜单时，由子到父，依次调用每个对象仅一次BuildContextualMenu。</li>
+<li>自定义控件添加ContextualMenu，使用ContextualMenuManipulator即可。</li>
+<li>GraphView的BuildContextualMenu默认实现，仅对GraphView，Node，Group这个三个类型添加了菜单项，所以自定义控件ContextualMenu触发GraphView的BuildContextualMenu时，会什么都不发生。</li>
+<li>你可以重写GraphView的BuildContextualMenu函数并根据evt.targe添加自己的菜单项。</li>
+<li>evt.targe是ContextualMenuManager.DisplayMenu发送事件的目标对象，也就是添加ContextualMenuManipulator的对象或者GraphView本身。</li>
+</ul>
+<h2 id="DOM事件流"><a href="#DOM事件流" class="headerlink" title="DOM事件流"></a>DOM事件流</h2><ul>
+<li>架构中事件按照既定流程处理事件<a target="_blank" rel="noopener" href="https://docs.unity.cn/Documentation/Manual/UIE-Events-Handling.html">Unity - Manual: Handle events</a></li>
+<li>在用户代码中，处理完自己的逻辑后，停止事件传播和防止其默认行为是常态，用于防止多个层级的回调函数同时被触发。</li>
+</ul>
 <h2 id="感想"><a href="#感想" class="headerlink" title="感想"></a>感想</h2><p>通过对GraphView的学习和使用，又一次深刻认识到。软件编程中没有魔术，任何行为后面都有它对应的代码。<br>阅读GraphView的源码对使用GraphView很有帮助。阅读源码是痛苦的，但仍比边猜边用要好得多。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://kumokyaku.github.io/2023/02/14/UIElement%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/" data-id="cle3u08v500006ovl3wgz8ax2" class="article-share-link">分享</a>
+      <a data-url="https://kumokyaku.github.io/2023/02/14/UIElement%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/" data-id="clfcbw3b2000mpwvlggsl9ghz" class="article-share-link">分享</a>
       
       
     </footer>
@@ -144,6 +173,15 @@
   
     
 <nav id="article-nav">
+  
+    <a href="/2023/03/13/%E5%B7%A6%E5%8F%B3%E7%9A%84%E4%B8%80%E7%A7%8D%E5%8C%BA%E5%88%86%E6%96%B9%E6%B3%95/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          左右的一种区分方法
+        
+      </div>
+    </a>
   
   
     <a href="/2023/02/12/%E5%85%B3%E4%BA%8ECSharp%E7%9A%84%E4%B8%80%E4%BA%9B%E7%BB%86%E8%8A%82%E9%97%AE%E9%A2%98/" id="article-nav-older" class="article-nav-link-wrap">
@@ -197,7 +235,7 @@
     <h2 class="author">云却</h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>42</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>44</strong><br>文章</div></a>
       <a href="/categories"><div><strong>22</strong><br>分类</div></a>
       <a href="/tags"><div><strong>63</strong><br>标签</div></a>
     </div>

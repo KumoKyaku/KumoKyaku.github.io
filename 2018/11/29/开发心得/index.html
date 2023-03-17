@@ -48,7 +48,7 @@
     <h2 class="author">云却</h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>42</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>44</strong><br>文章</div></a>
       <a href="/categories"><div><strong>22</strong><br>分类</div></a>
       <a href="/tags"><div><strong>63</strong><br>标签</div></a>
     </div>
@@ -391,6 +391,15 @@
 <h2 id="事务句柄-x2F-事务锁-x2F-ET6-0协程锁"><a href="#事务句柄-x2F-事务锁-x2F-ET6-0协程锁" class="headerlink" title="事务句柄&#x2F;事务锁&#x2F;ET6.0协程锁"></a>事务句柄&#x2F;事务锁&#x2F;ET6.0协程锁</h2><p>对于任何需要<code>异步执行/分段/防重入/互斥</code>的事务,应该采用先获取句柄在执行的设计，句柄在（多段）执行过程中传递，在执行结束后复位。句柄可以设计成泛型的，保存事务中间信息，尽量每次使用新句柄，而不是复用句柄，防止脏数据。</p>
 <h2 id="对象池"><a href="#对象池" class="headerlink" title="对象池"></a>对象池</h2><p>要有全局任务控制。<br>对于各个功能，使用的频率决定相关功能对象池的权重，以此决定对象池长期保持对象的数量。<br>把需要加载的东西加入任务队列。控制好内存和帧率的平衡。<br>良好的设计应该是游戏应该知道什么时间段是性能占用低的时间。<br>比如打开全屏UI，通常性能非常充足。这个时候全局如果认为内存可用。就会分帧实例化对象池的对象。</p>
 <h2 id="值类型在哪里分配内存"><a href="#值类型在哪里分配内存" class="headerlink" title="值类型在哪里分配内存"></a>值类型在哪里分配内存</h2><p>取决于声明位置,声明在方法内部,就在栈上. 声明在类的字段上,就在堆上.</p>
+<h2 id="不要盲目解耦合"><a href="#不要盲目解耦合" class="headerlink" title="不要盲目解耦合"></a>不要盲目解耦合</h2><ul>
+<li>调用方式与耦合程度：<br>类型强引用直接调用 &gt; 接口或多态调用 &gt; 事件委托调用 &gt; 字符串反射调用</li>
+<li>以下几个情况适合解耦合： <ul>
+<li>两个类型不在同一个程序集，被引用的程序集中希望调用引用它的程序集中的函数</li>
+<li>两个类型不是由同一个程序员实现，互相不能有效沟通</li>
+<li>类型在编码时未知，引用在编码时未知，由运行时动态生成</li>
+</ul>
+</li>
+</ul>
 <h2 id="编程三个核心技巧-理解每种技巧都是编程路上的分水岭"><a href="#编程三个核心技巧-理解每种技巧都是编程路上的分水岭" class="headerlink" title="编程三个核心技巧,理解每种技巧都是编程路上的分水岭."></a><code>编程三个核心技巧</code>,理解每种技巧都是编程路上的分水岭.</h2><ul>
 <li>回调函数-&gt;委托事件</li>
 <li>泛型</li>
@@ -420,7 +429,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://kumokyaku.github.io/2018/11/29/%E5%BC%80%E5%8F%91%E5%BF%83%E5%BE%97/" data-id="cld13jtfs001pmkvlhfz05cwb" class="article-share-link">分享</a>
+      <a data-url="https://kumokyaku.github.io/2018/11/29/%E5%BC%80%E5%8F%91%E5%BF%83%E5%BE%97/" data-id="clfcbw3bf0021pwvl23n6g8us" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BF%83%E5%BE%97/" rel="tag">心得</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B8%B8%E6%88%8F/" rel="tag">游戏</a></li></ul>
@@ -492,7 +501,7 @@
     <h2 class="author">云却</h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>42</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>44</strong><br>文章</div></a>
       <a href="/categories"><div><strong>22</strong><br>分类</div></a>
       <a href="/tags"><div><strong>63</strong><br>标签</div></a>
     </div>
