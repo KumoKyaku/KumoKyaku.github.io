@@ -11,6 +11,9 @@ GraphView自身从VisualElement继承。
 
 建议：在你使用GraphView之前，一定要先学习DOM事件流。1个小时的扫盲学习会在后面为你节省至少10个小时的时间。
 
+## GraphView 保存布局
+给viewDataKey赋值，GraphView.UpdatePersistedViewTransform() 触发SaveViewData()。默认支持保存布局。
+
 ## GraphElement 选中
 
 通常OnSelected被执行2次。
