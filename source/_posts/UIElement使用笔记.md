@@ -11,6 +11,13 @@ GraphView自身从VisualElement继承。
 
 建议：在你使用GraphView之前，一定要先学习DOM事件流。1个小时的扫盲学习会在后面为你节省至少10个小时的时间。
 
+## DOM事件流
+
+- 架构中事件按照既定流程处理事件[Unity - Manual: Handle events](https://docs.unity.cn/Documentation/Manual/UIE-Events-Handling.html)
+- 在用户代码中，处理完自己的逻辑后，停止事件传播和防止其默认行为是常态，用于防止多个层级的回调函数同时被触发。  
+
+[![Event propagation](https://docs.unity.cn/Documentation/uploads/Main/UIElementsEvents.png)](https://docs.unity.cn/Documentation/Manual/UIE-Events-Dispatching.html)
+
 ## GraphView 保存布局
 给viewDataKey赋值，GraphView.UpdatePersistedViewTransform() 触发SaveViewData()。默认支持保存布局。
 
@@ -64,11 +71,6 @@ GraphView自身从VisualElement继承。
 - GraphView的BuildContextualMenu默认实现，仅对GraphView，Node，Group这个三个类型添加了菜单项，所以自定义控件ContextualMenu触发GraphView的BuildContextualMenu时，会什么都不发生。
 - 你可以重写GraphView的BuildContextualMenu函数并根据evt.targe添加自己的菜单项。
 - evt.targe是ContextualMenuManager.DisplayMenu发送事件的目标对象，也就是添加ContextualMenuManipulator的对象或者GraphView本身。
-
-## DOM事件流
-
-- 架构中事件按照既定流程处理事件[Unity - Manual: Handle events](https://docs.unity.cn/Documentation/Manual/UIE-Events-Handling.html)
-- 在用户代码中，处理完自己的逻辑后，停止事件传播和防止其默认行为是常态，用于防止多个层级的回调函数同时被触发。
 
 ## 感想
 
