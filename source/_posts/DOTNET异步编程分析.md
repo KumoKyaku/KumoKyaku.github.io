@@ -54,6 +54,20 @@ UnsafeOnCompleted 当没有同步完成时，向Task/Awaitabl注册回调，Task
 
 - await Task.Delay(0);永远同步完成，除了浪费性能没有用任何意义。后续代码并不会切换执行线程。
 
+## 如何终止异步的方法
+- 异步方法增加Cancellentoken参数。
+- 在异步回调时触发时，进行额外检测。
+  - 检测对象是不是为null，unity对象是否存活等。
+  - 闭包里记录一个当前游戏性运行时version，每次返回主界面或者热重载后，需要终止异步时version++，回调时判断version是否一致。
+  - 全局的Cancellentoken，实际上与version思路一致。
+- 重写SynchronizationContext，unity中重写UnitySynchronizationContext。在需要终止所有异步。清除SynchronizationContext中的所有回调即可。
+  - 如果按需终止指定的异步回调。回调函数的委托，可以拿到target，也就是方法的instance实例，这个实例是，编译自动生成的IAsyncStateMachine类型，debug编译时值类型，release编译是结构体。这个实例会有一个成员，通常为`<>4__this`，这个成员的类型就是，声明这个异步方法的类型。
+    那么，就可以通过反射，拿到target，通过target拿到异步方法的声明的实例对象。
+    所以，就可以在这个类里增加一个字段，标记是否需要异步终止。
+- 实现自定义的Task类型。自定义的Taskcompletesourse。
+  - 具体参考 GetAwaiter方法，或者扩展方法。ICriticalNotifyCompletion接口。TaskBuilder相关内容。
+
+
 
 
 
